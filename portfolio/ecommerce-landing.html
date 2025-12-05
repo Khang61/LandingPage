@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopStyle - Thời Trang Online Chính Hãng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#FF6B35;--primary-dark:#E55A2B;--primary-light:#FF8C5A;--secondary:#E53935;--accent:#FFC107;--white:#FFF;--gray-50:#FAFAFA;--gray-100:#F5F5F5;--gray-200:#EEEEEE;--gray-300:#E0E0E0;--gray-600:#757575;--gray-800:#424242;--gray-900:#212121;--success:#4CAF50;--shadow-sm:0 2px 8px rgba(0,0,0,.08);--shadow-md:0 8px 24px rgba(0,0,0,.12);--shadow-lg:0 16px 48px rgba(0,0,0,.15)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Be Vietnam Pro',sans-serif;color:var(--gray-800);line-height:1.7;overflow-x:hidden;background:var(--white)}
+
+        /* Animations */
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes fadeInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+        @keyframes glow{0%,100%{box-shadow:0 0 5px var(--primary)}50%{box-shadow:0 0 20px var(--primary),0 0 30px var(--primary-light)}}
+
+        /* Header */
+        header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,107,53,.1);transition:all .3s}
+        header.scrolled{box-shadow:var(--shadow-md)}
+        .header-container{max-width:1400px;margin:0 auto;padding:.8rem 2rem;display:flex;justify-content:space-between;align-items:center}
+        .logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+        .logo-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;font-weight:900}
+        .logo-text{font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        nav{display:flex;gap:2rem;align-items:center}
+        nav a{text-decoration:none;color:var(--gray-800);font-weight:500;font-size:.95rem;transition:color .3s}
+        nav a:hover{color:var(--primary)}
+        .header-actions{display:flex;align-items:center;gap:1.5rem}
+        .cart-btn{position:relative;background:none;border:none;cursor:pointer;font-size:1.5rem}
+        .cart-count{position:absolute;top:-8px;right:-8px;background:var(--secondary);color:#fff;font-size:.7rem;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+        .header-cta{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:.8rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s;box-shadow:0 4px 15px rgba(255,107,53,.3)}
+        .header-cta:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(255,107,53,.4)}
+
+        /* Hero */
+        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#FFF5F2 0%,#FFF 50%,#FFF9E6 100%);padding-top:80px}
+        .hero::before{content:'';position:absolute;top:-30%;right:-20%;width:60%;height:120%;background:radial-gradient(circle,rgba(255,107,53,.1),transparent 60%);border-radius:50%}
+        .hero-container{max-width:1400px;margin:0 auto;padding:4rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+        .hero-content{animation:fadeInLeft 1s ease-out}
+        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--secondary),var(--primary));color:#fff;padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1.5rem;animation:pulse 2s infinite}
+        .hero-title{font-size:3.2rem;font-weight:900;line-height:1.15;color:var(--gray-900);margin-bottom:1.5rem}
+        .hero-title .highlight{color:var(--primary)}
+        .hero-subtitle{font-size:1.15rem;color:var(--gray-600);margin-bottom:2rem;max-width:500px}
+        .hero-price{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+        .price-old{font-size:1.3rem;color:var(--gray-600);text-decoration:line-through}
+        .price-new{font-size:2.5rem;font-weight:800;color:var(--secondary)}
+        .price-save{background:var(--accent);color:var(--gray-900);padding:.3rem .8rem;border-radius:6px;font-size:.85rem;font-weight:700}
+        .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+        .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:1rem 2.5rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:1.1rem;transition:all .3s;box-shadow:0 8px 25px rgba(255,107,53,.35);border:none;cursor:pointer}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(255,107,53,.45)}
+        .btn-secondary{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--primary);padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:1rem;transition:all .3s;border:2px solid var(--primary)}
+        .btn-secondary:hover{background:var(--primary);color:#fff}
+        .hero-image{position:relative;animation:fadeInRight 1s ease-out .3s forwards;opacity:0}
+        .hero-image img{width:100%;max-width:550px;border-radius:24px;box-shadow:var(--shadow-lg)}
+        .hero-float{position:absolute;background:#fff;padding:1rem 1.5rem;border-radius:16px;box-shadow:var(--shadow-md);animation:float 3s ease-in-out infinite}
+        .hero-float.f1{top:10%;left:-10%;animation-delay:.5s}
+        .hero-float.f2{bottom:20%;right:-5%;animation-delay:1s}
+        .hero-float .icon{font-size:1.5rem;margin-bottom:.3rem}
+        .hero-float strong{display:block;font-size:.95rem;color:var(--gray-900)}
+        .hero-float span{font-size:.8rem;color:var(--gray-600)}
+
+        /* Trust Bar */
+        .trust-bar{background:var(--gray-900);padding:1.5rem 0}
+        .trust-container{max-width:1400px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+        .trust-item{display:flex;align-items:center;gap:.8rem;color:#fff}
+        .trust-icon{font-size:1.8rem}
+        .trust-text strong{display:block;font-size:.95rem}
+        .trust-text span{font-size:.8rem;opacity:.7}
+
+        /* Section Common */
+        .section{padding:5rem 2rem}
+        .section-header{text-align:center;margin-bottom:4rem}
+        .section-badge{display:inline-block;background:linear-gradient(135deg,rgba(255,107,53,.1),rgba(229,57,53,.1));color:var(--primary);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1rem}
+        .section-title{font-size:2.5rem;font-weight:800;color:var(--gray-900);margin-bottom:1rem}
+        .section-subtitle{font-size:1.1rem;color:var(--gray-600);max-width:600px;margin:0 auto}
+
+        /* Categories */
+        .categories{background:var(--gray-50)}
+        .cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;max-width:1200px;margin:0 auto}
+        .cat-card{background:#fff;border-radius:16px;padding:2rem 1rem;text-align:center;transition:all .3s;cursor:pointer;border:2px solid transparent}
+        .cat-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+        .cat-icon{font-size:3rem;margin-bottom:1rem}
+        .cat-card h3{font-size:1rem;font-weight:600;color:var(--gray-800)}
+        .cat-card span{font-size:.85rem;color:var(--gray-600)}
+
+        /* Flash Sale */
+        .flash-sale{background:linear-gradient(135deg,var(--secondary),var(--primary));padding:4rem 2rem;position:relative;overflow:hidden}
+        .flash-sale::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+        .flash-container{max-width:1400px;margin:0 auto;position:relative;z-index:1}
+        .flash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem}
+        .flash-title{display:flex;align-items:center;gap:1rem}
+        .flash-title h2{font-size:2rem;font-weight:800;color:#fff}
+        .flash-icon{font-size:2.5rem;animation:shake 1s infinite}
+        .countdown{display:flex;gap:.8rem}
+        .countdown-item{background:rgba(255,255,255,.2);backdrop-filter:blur(10px);padding:1rem 1.2rem;border-radius:12px;text-align:center;min-width:70px}
+        .countdown-item span{display:block;font-size:1.8rem;font-weight:800;color:#fff}
+        .countdown-item label{font-size:.75rem;color:rgba(255,255,255,.8);text-transform:uppercase}
+        .flash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+        .flash-card{background:#fff;border-radius:16px;overflow:hidden;transition:all .3s}
+        .flash-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.2)}
+        .flash-img{position:relative;height:200px;overflow:hidden}
+        .flash-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+        .flash-card:hover .flash-img img{transform:scale(1.1)}
+        .flash-badge{position:absolute;top:10px;left:10px;background:var(--secondary);color:#fff;padding:.3rem .8rem;border-radius:6px;font-size:.8rem;font-weight:700}
+        .flash-info{padding:1.2rem}
+        .flash-info h3{font-size:1rem;font-weight:600;color:var(--gray-800);margin-bottom:.5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .flash-prices{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+        .flash-prices .old{font-size:.9rem;color:var(--gray-600);text-decoration:line-through}
+        .flash-prices .new{font-size:1.2rem;font-weight:700;color:var(--secondary)}
+        .flash-progress{height:6px;background:var(--gray-200);border-radius:3px;overflow:hidden;margin-bottom:.5rem}
+        .flash-progress-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:3px}
+        .flash-sold{font-size:.8rem;color:var(--gray-600)}
+
+        /* Products */
+        .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1400px;margin:0 auto}
+        .product-card{background:#fff;border-radius:20px;overflow:hidden;transition:all .3s;border:1px solid var(--gray-200)}
+        .product-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg);border-color:var(--primary)}
+        .product-img{position:relative;height:280px;overflow:hidden}
+        .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+        .product-card:hover .product-img img{transform:scale(1.08)}
+        .product-badges{position:absolute;top:15px;left:15px;display:flex;flex-direction:column;gap:.5rem}
+        .badge{padding:.4rem .8rem;border-radius:6px;font-size:.75rem;font-weight:700}
+        .badge-sale{background:var(--secondary);color:#fff}
+        .badge-new{background:var(--success);color:#fff}
+        .badge-hot{background:var(--accent);color:var(--gray-900)}
+        .product-actions{position:absolute;right:15px;top:15px;display:flex;flex-direction:column;gap:.5rem;opacity:0;transform:translateX(20px);transition:all .3s}
+        .product-card:hover .product-actions{opacity:1;transform:translateX(0)}
+        .action-btn{width:40px;height:40px;background:#fff;border:none;border-radius:50%;cursor:pointer;font-size:1.1rem;box-shadow:var(--shadow-sm);transition:all .3s}
+        .action-btn:hover{background:var(--primary);color:#fff}
+        .product-info{padding:1.5rem}
+        .product-category{font-size:.8rem;color:var(--primary);font-weight:600;text-transform:uppercase;margin-bottom:.5rem}
+        .product-name{font-size:1.1rem;font-weight:600;color:var(--gray-900);margin-bottom:.8rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .product-rating{display:flex;align-items:center;gap:.5rem;margin-bottom:.8rem}
+        .stars{color:var(--accent);font-size:.9rem}
+        .rating-count{font-size:.8rem;color:var(--gray-600)}
+        .product-price{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+        .product-price .old{font-size:1rem;color:var(--gray-600);text-decoration:line-through}
+        .product-price .new{font-size:1.3rem;font-weight:700;color:var(--secondary)}
+        .add-cart-btn{width:100%;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;padding:.9rem;border-radius:10px;font-weight:600;font-size:.95rem;cursor:pointer;transition:all .3s;font-family:inherit}
+        .add-cart-btn:hover{box-shadow:0 8px 20px rgba(255,107,53,.35);transform:translateY(-2px)}
+
+        /* Testimonials */
+        .testimonials{background:var(--gray-50)}
+        .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1200px;margin:0 auto}
+        .testimonial-card{background:#fff;border-radius:20px;padding:2rem;box-shadow:var(--shadow-sm);transition:all .3s}
+        .testimonial-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+        .testimonial-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+        .testimonial-avatar{width:60px;height:60px;border-radius:50%;object-fit:cover}
+        .testimonial-author h4{font-size:1rem;font-weight:600;color:var(--gray-900)}
+        .testimonial-author span{font-size:.85rem;color:var(--gray-600)}
+        .testimonial-stars{color:var(--accent);font-size:1rem;margin-bottom:1rem}
+        .testimonial-text{font-size:.95rem;color:var(--gray-700);line-height:1.8;font-style:italic}
+
+        /* Newsletter */
+        .newsletter{background:linear-gradient(135deg,var(--gray-900),#1a1a1a);padding:5rem 2rem;position:relative;overflow:hidden}
+        .newsletter::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:150%;background:radial-gradient(circle,rgba(255,107,53,.15),transparent 60%);border-radius:50%}
+        .newsletter-container{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1}
+        .newsletter h2{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:1rem}
+        .newsletter p{font-size:1.1rem;color:rgba(255,255,255,.7);margin-bottom:2rem}
+        .newsletter-form{display:flex;gap:1rem;max-width:500px;margin:0 auto}
+        .newsletter-form input{flex:1;padding:1rem 1.5rem;border:none;border-radius:12px;font-size:1rem;font-family:inherit}
+        .newsletter-form button{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;padding:1rem 2rem;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;transition:all .3s;font-family:inherit;white-space:nowrap}
+        .newsletter-form button:hover{transform:scale(1.05);box-shadow:0 8px 25px rgba(255,107,53,.4)}
+
+        /* Footer */
+        footer{background:var(--gray-900);color:#fff;padding:4rem 2rem 2rem}
+        .footer-container{max-width:1400px;margin:0 auto}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+        .footer-brand .logo{margin-bottom:1.5rem}
+        .footer-brand .logo-text{color:#fff;-webkit-text-fill-color:#fff}
+        .footer-brand p{color:rgba(255,255,255,.6);font-size:.95rem;line-height:1.8;margin-bottom:1.5rem}
+        .social-links{display:flex;gap:1rem}
+        .social-links a{width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:all .3s;font-size:1.1rem}
+        .social-links a:hover{background:var(--primary);transform:translateY(-3px)}
+        .footer-col h4{font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;color:#fff}
+        .footer-col ul{list-style:none}
+        .footer-col ul li{margin-bottom:.8rem}
+        .footer-col ul li a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;transition:color .3s}
+        .footer-col ul li a:hover{color:var(--primary)}
+        .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+        .footer-bottom p{color:rgba(255,255,255,.5);font-size:.9rem}
+        .payment-methods{display:flex;gap:1rem;align-items:center}
+        .payment-methods span{background:rgba(255,255,255,.1);padding:.5rem 1rem;border-radius:6px;font-size:.8rem;font-weight:600}
+
+        /* Back to Main */
+        .back-to-main{position:fixed;bottom:30px;left:30px;background:#fff;color:var(--gray-800);padding:1rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.9rem;box-shadow:var(--shadow-lg);transition:all .3s;z-index:999;display:flex;align-items:center;gap:.5rem}
+        .back-to-main:hover{background:var(--primary);color:#fff;transform:translateY(-3px)}
+
+        /* Responsive */
+        @media(max-width:1200px){
+            .hero-title{font-size:2.5rem}
+            .products-grid,.flash-grid{grid-template-columns:repeat(3,1fr)}
+            .cat-grid{grid-template-columns:repeat(3,1fr)}
+        }
+        @media(max-width:992px){
+            .hero-container{grid-template-columns:1fr;text-align:center}
+            .hero-content{order:2}
+            .hero-image{order:1}
+            .hero-subtitle{margin:0 auto 2rem}
+            .hero-buttons{justify-content:center}
+            .hero-float{display:none}
+            .products-grid,.flash-grid{grid-template-columns:repeat(2,1fr)}
+            .testimonials-grid{grid-template-columns:1fr}
+            .footer-grid{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:768px){
+            nav{display:none}
+            .hero-title{font-size:2rem}
+            .section-title{font-size:1.8rem}
+            .cat-grid{grid-template-columns:repeat(2,1fr)}
+            .flash-header{flex-direction:column;text-align:center}
+            .flash-grid,.products-grid{grid-template-columns:1fr}
+            .newsletter-form{flex-direction:column}
+            .footer-grid{grid-template-columns:1fr}
+            .trust-container{justify-content:center}
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">S</div>
+                <div>
+                    <div class="logo-text">ShopStyle</div>
+                </div>
+            </a>
+            <nav>
+                <a href="#categories">Danh Mục</a>
+                <a href="#flash-sale">Flash Sale</a>
+                <a href="#products">Sản Phẩm</a>
+                <a href="#testimonials">Đánh Giá</a>
+            </nav>
+            <div class="header-actions">
+                <button class="cart-btn">
+                    🛒
+                    <span class="cart-count">3</span>
+                </button>
+                <a href="#" class="header-cta">Đăng Nhập</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">🔥 SALE UP TO 50% - CHỈ HÔM NAY</div>
+                <h1 class="hero-title">
+                    Xu Hướng <span class="highlight">Thời Trang</span><br>
+                    Mùa Đông 2024
+                </h1>
+                <p class="hero-subtitle">
+                    Khám phá bộ sưu tập mới nhất với chất liệu cao cấp, thiết kế độc đáo.
+                    Miễn phí vận chuyển cho đơn từ 500K.
+                </p>
+                <div class="hero-price">
+                    <span class="price-old">1.290.000đ</span>
+                    <span class="price-new">649.000đ</span>
+                    <span class="price-save">-50%</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn-primary">🛒 Mua Ngay</a>
+                    <a href="#categories" class="btn-secondary">Xem Bộ Sưu Tập</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=700&fit=crop" alt="Fashion Collection">
+                <div class="hero-float f1">
+                    <div class="icon">🚚</div>
+                    <strong>Miễn Phí Ship</strong>
+                    <span>Đơn từ 500K</span>
+                </div>
+                <div class="hero-float f2">
+                    <div class="icon">⭐</div>
+                    <strong>50K+ Đánh Giá</strong>
+                    <span>4.9/5 sao</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="trust-container">
+            <div class="trust-item">
+                <span class="trust-icon">🚚</span>
+                <div class="trust-text">
+                    <strong>Miễn Phí Vận Chuyển</strong>
+                    <span>Đơn hàng từ 500.000đ</span>
+                </div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🔄</span>
+                <div class="trust-text">
+                    <strong>Đổi Trả 30 Ngày</strong>
+                    <span>Hoàn tiền 100%</span>
+                </div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🔒</span>
+                <div class="trust-text">
+                    <strong>Thanh Toán An Toàn</strong>
+                    <span>Bảo mật SSL 256-bit</span>
+                </div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">💬</span>
+                <div class="trust-text">
+                    <strong>Hỗ Trợ 24/7</strong>
+                    <span>Hotline: 1900.xxxx</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section categories" id="categories">
+        <div class="section-header">
+            <span class="section-badge">KHÁM PHÁ</span>
+            <h2 class="section-title">Danh Mục Sản Phẩm</h2>
+            <p class="section-subtitle">Tìm kiếm sản phẩm yêu thích theo từng danh mục</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card">
+                <div class="cat-icon">👗</div>
+                <h3>Váy Đầm</h3>
+                <span>250+ sản phẩm</span>
+            </div>
+            <div class="cat-card">
+                <div class="cat-icon">👕</div>
+                <h3>Áo Thun</h3>
+                <span>180+ sản phẩm</span>
+            </div>
+            <div class="cat-card">
+                <div class="cat-icon">👖</div>
+                <h3>Quần Jeans</h3>
+                <span>120+ sản phẩm</span>
+            </div>
+            <div class="cat-card">
+                <div class="cat-icon">🧥</div>
+                <h3>Áo Khoác</h3>
+                <span>90+ sản phẩm</span>
+            </div>
+            <div class="cat-card">
+                <div class="cat-icon">👟</div>
+                <h3>Giày Dép</h3>
+                <span>200+ sản phẩm</span>
+            </div>
+            <div class="cat-card">
+                <div class="cat-icon">👜</div>
+                <h3>Túi Xách</h3>
+                <span>150+ sản phẩm</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Sale -->
+    <section class="flash-sale" id="flash-sale">
+        <div class="flash-container">
+            <div class="flash-header">
+                <div class="flash-title">
+                    <span class="flash-icon">⚡</span>
+                    <h2>FLASH SALE</h2>
+                </div>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span id="hours">08</span>
+                        <label>Giờ</label>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes">45</span>
+                        <label>Phút</label>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds">30</span>
+                        <label>Giây</label>
+                    </div>
+                </div>
+            </div>
+            <div class="flash-grid">
+                <div class="flash-card">
+                    <div class="flash-img">
+                        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&h=400&fit=crop" alt="Áo Blazer">
+                        <span class="flash-badge">-45%</span>
+                    </div>
+                    <div class="flash-info">
+                        <h3>Áo Blazer Nữ Cao Cấp</h3>
+                        <div class="flash-prices">
+                            <span class="old">890.000đ</span>
+                            <span class="new">489.000đ</span>
+                        </div>
+                        <div class="flash-progress">
+                            <div class="flash-progress-bar" style="width:75%"></div>
+                        </div>
+                        <span class="flash-sold">Đã bán 75/100</span>
+                    </div>
+                </div>
+                <div class="flash-card">
+                    <div class="flash-img">
+                        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop" alt="Áo Khoác">
+                        <span class="flash-badge">-40%</span>
+                    </div>
+                    <div class="flash-info">
+                        <h3>Áo Khoác Denim Unisex</h3>
+                        <div class="flash-prices">
+                            <span class="old">750.000đ</span>
+                            <span class="new">449.000đ</span>
+                        </div>
+                        <div class="flash-progress">
+                            <div class="flash-progress-bar" style="width:60%"></div>
+                        </div>
+                        <span class="flash-sold">Đã bán 60/100</span>
+                    </div>
+                </div>
+                <div class="flash-card">
+                    <div class="flash-img">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=400&fit=crop" alt="Áo Hoodie">
+                        <span class="flash-badge">-50%</span>
+                    </div>
+                    <div class="flash-info">
+                        <h3>Áo Hoodie Oversize</h3>
+                        <div class="flash-prices">
+                            <span class="old">650.000đ</span>
+                            <span class="new">325.000đ</span>
+                        </div>
+                        <div class="flash-progress">
+                            <div class="flash-progress-bar" style="width:85%"></div>
+                        </div>
+                        <span class="flash-sold">Đã bán 85/100</span>
+                    </div>
+                </div>
+                <div class="flash-card">
+                    <div class="flash-img">
+                        <img src="https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=400&h=400&fit=crop" alt="Váy">
+                        <span class="flash-badge">-35%</span>
+                    </div>
+                    <div class="flash-info">
+                        <h3>Váy Midi Xếp Ly</h3>
+                        <div class="flash-prices">
+                            <span class="old">550.000đ</span>
+                            <span class="new">357.000đ</span>
+                        </div>
+                        <div class="flash-progress">
+                            <div class="flash-progress-bar" style="width:45%"></div>
+                        </div>
+                        <span class="flash-sold">Đã bán 45/100</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="section" id="products">
+        <div class="section-header">
+            <span class="section-badge">BÁN CHẠY</span>
+            <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
+            <p class="section-subtitle">Những sản phẩm được yêu thích nhất tuần này</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop" alt="Product">
+                    <div class="product-badges">
+                        <span class="badge badge-hot">HOT</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="action-btn">❤️</button>
+                        <button class="action-btn">👁️</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Áo Sơ Mi</span>
+                    <h3 class="product-name">Áo Sơ Mi Lụa Tay Dài Thanh Lịch</h3>
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-count">(128)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="old">450.000đ</span>
+                        <span class="new">359.000đ</span>
+                    </div>
+                    <button class="add-cart-btn">🛒 Thêm Vào Giỏ</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=500&fit=crop" alt="Product">
+                    <div class="product-badges">
+                        <span class="badge badge-sale">-30%</span>
+                        <span class="badge badge-new">NEW</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="action-btn">❤️</button>
+                        <button class="action-btn">👁️</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Váy Đầm</span>
+                    <h3 class="product-name">Đầm Maxi Hoa Nhí Dáng Xòe</h3>
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-count">(256)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="old">680.000đ</span>
+                        <span class="new">476.000đ</span>
+                    </div>
+                    <button class="add-cart-btn">🛒 Thêm Vào Giỏ</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&h=500&fit=crop" alt="Product">
+                    <div class="product-badges">
+                        <span class="badge badge-hot">HOT</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="action-btn">❤️</button>
+                        <button class="action-btn">👁️</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Set Đồ</span>
+                    <h3 class="product-name">Set Áo Croptop + Chân Váy Xếp Ly</h3>
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐</span>
+                        <span class="rating-count">(89)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="old">520.000đ</span>
+                        <span class="new">399.000đ</span>
+                    </div>
+                    <button class="add-cart-btn">🛒 Thêm Vào Giỏ</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&h=500&fit=crop" alt="Product">
+                    <div class="product-badges">
+                        <span class="badge badge-sale">-25%</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="action-btn">❤️</button>
+                        <button class="action-btn">👁️</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Áo Khoác</span>
+                    <h3 class="product-name">Áo Khoác Cardigan Len Mềm Mịn</h3>
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-count">(167)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="old">580.000đ</span>
+                        <span class="new">435.000đ</span>
+                    </div>
+                    <button class="add-cart-btn">🛒 Thêm Vào Giỏ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials" id="testimonials">
+        <div class="section-header">
+            <span class="section-badge">KHÁCH HÀNG NÓI GÌ</span>
+            <h2 class="section-title">Đánh Giá Từ Khách Hàng</h2>
+            <p class="section-subtitle">Hơn 50.000 khách hàng hài lòng với dịch vụ của chúng tôi</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Avatar" class="testimonial-avatar">
+                    <div class="testimonial-author">
+                        <h4>Nguyễn Thị Mai</h4>
+                        <span>Đã mua 15 đơn</span>
+                    </div>
+                </div>
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Chất lượng sản phẩm rất tốt, đúng như hình mô tả. Ship nhanh, đóng gói cẩn thận. Sẽ ủng hộ shop dài dài!"</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Avatar" class="testimonial-avatar">
+                    <div class="testimonial-author">
+                        <h4>Trần Văn Hùng</h4>
+                        <span>Đã mua 8 đơn</span>
+                    </div>
+                </div>
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Mua áo khoác cho vợ, cô ấy rất thích. Vải dày dặn, form chuẩn. Giá cả hợp lý so với chất lượng."</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Avatar" class="testimonial-avatar">
+                    <div class="testimonial-author">
+                        <h4>Lê Hoàng Yến</h4>
+                        <span>Đã mua 23 đơn</span>
+                    </div>
+                </div>
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Khách hàng thân thiết của shop. Luôn có nhiều mẫu mới, cập nhật trend nhanh. CSKH nhiệt tình, tư vấn kỹ."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Đăng Ký Nhận Ưu Đãi</h2>
+            <p>Nhập email để nhận thông tin khuyến mãi và voucher giảm giá 10% cho đơn đầu tiên!</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Nhập email của bạn...">
+                <button type="submit">Đăng Ký Ngay</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">S</div>
+                        <div class="logo-text">ShopStyle</div>
+                    </a>
+                    <p>ShopStyle - Thương hiệu thời trang uy tín hàng đầu Việt Nam. Cam kết mang đến những sản phẩm chất lượng với giá cả hợp lý nhất.</p>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">📸</a>
+                        <a href="#">🎵</a>
+                        <a href="#">📺</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Về Chúng Tôi</h4>
+                    <ul>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Điều khoản</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hỗ Trợ</h4>
+                    <ul>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách vận chuyển</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên Hệ</h4>
+                    <ul>
+                        <li><a href="#">📍 123 Nguyễn Huệ, Q.1, TP.HCM</a></li>
+                        <li><a href="#">📞 1900.xxxx</a></li>
+                        <li><a href="#">✉️ support@shopstyle.vn</a></li>
+                        <li><a href="#">🕐 8:00 - 22:00</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 ShopStyle. All rights reserved.</p>
+                <div class="payment-methods">
+                    <span>💳 VISA</span>
+                    <span>💳 MasterCard</span>
+                    <span>🏦 ATM</span>
+                    <span>💵 COD</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Main -->
+    <a href="../index.html" class="back-to-main">← Quay lại trang chính</a>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            const diff = endOfDay - now;
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .cat-card, .testimonial-card, .flash-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Cảm ơn bạn đã đăng ký! Mã giảm giá 10%: WELCOME10');
+        });
+
+        // Add to cart buttons
+        document.querySelectorAll('.add-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const count = document.querySelector('.cart-count');
+                count.textContent = parseInt(count.textContent) + 1;
+                this.textContent = '✓ Đã thêm';
+                this.style.background = 'var(--success)';
+                setTimeout(() => {
+                    this.textContent = '🛒 Thêm Vào Giỏ';
+                    this.style.background = '';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
