@@ -586,9 +586,9 @@ a:hover {
 }
 
 .trust-bar__label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-text-light);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
@@ -597,23 +597,24 @@ a:hover {
 .partner-logos {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .partner-logo {
-  opacity: 0.5;
+  opacity: 0.85;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .partner-logo:hover {
   opacity: 1;
+  transform: scale(1.1);
 }
 
 .partner-logo svg {
-  height: 24px;
+  height: 45px;
   width: auto;
-  color: var(--color-text-light);
+  color: var(--color-text);
 }
 
 .trust-bar__stats {
