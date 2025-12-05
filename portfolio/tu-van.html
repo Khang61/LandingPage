@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Landing Page Tư Vấn - Dự án tiêu biểu của LandingPro">
+  <title>Landing Page Tư Vấn | LandingPro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <style>
+    .portfolio-hero { padding: 120px 0 80px; background: linear-gradient(135deg, var(--color-bg-alt) 0%, #fff 100%); }
+    .portfolio-hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .portfolio-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .portfolio-hero .tagline { font-size: 1.25rem; color: var(--color-primary); font-weight: 600; margin-bottom: 1rem; }
+    .portfolio-hero p { color: var(--color-text-light); margin-bottom: 2rem; }
+    .portfolio-stats { display: flex; gap: 2rem; margin-bottom: 2rem; }
+    .portfolio-stat { text-align: center; }
+    .portfolio-stat-value { font-size: 2rem; font-weight: 700; color: var(--color-primary); }
+    .portfolio-stat-label { font-size: 0.875rem; color: var(--color-text-light); }
+    .portfolio-image img { width: 100%; border-radius: var(--radius-lg); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+    .portfolio-details { padding: 80px 0; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .detail-section h2 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--color-text); }
+    .detail-list { list-style: none; padding: 0; }
+    .detail-list li { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; color: var(--color-text-light); }
+    .detail-list li svg { width: 20px; height: 20px; color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tech-tag { background: var(--color-bg-alt); padding: 0.5rem 1rem; border-radius: var(--radius-full); font-size: 0.875rem; color: var(--color-primary); font-weight: 500; }
+    .gallery-section { padding: 80px 0; background: var(--color-bg-alt); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .gallery-item img { width: 100%; border-radius: var(--radius-md); transition: transform 0.3s ease; }
+    .gallery-item:hover img { transform: scale(1.02); }
+    .cta-section { padding: 80px 0; text-align: center; }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { color: var(--color-text-light); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    @media (max-width: 768px) { .portfolio-hero-content, .detail-grid, .gallery-grid { grid-template-columns: 1fr; } .portfolio-hero h1 { font-size: 1.75rem; } }
+  </style>
+</head>
+<body>
+  <header id="header" class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/logo.svg" alt="LandingPro Logo" height="45">
+      </a>
+      <nav class="nav-menu">
+        <a href="../index.html#services">Dịch vụ</a>
+        <a href="../index.html#portfolio">Portfolio</a>
+        <a href="../index.html#pricing">Bảng giá</a>
+        <a href="../index.html#contact" class="btn btn--primary">Liên hệ</a>
+      </nav>
+      <div class="menu-toggle"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="portfolio-hero">
+      <div class="container">
+        <div class="portfolio-hero-content">
+          <div class="portfolio-info animate fade-in">
+            <span class="tagline">Dự án tiêu biểu</span>
+            <h1>Landing Page Dịch Vụ Tư Vấn</h1>
+            <p>Thiết kế landing page cho công ty tư vấn tài chính, tập trung vào việc xây dựng uy tín và thúc đẩy khách hàng đặt lịch tư vấn miễn phí.</p>
+
+            <div class="portfolio-stats">
+              <div class="portfolio-stat">
+                <div class="portfolio-stat-value">80+</div>
+                <div class="portfolio-stat-label">Booking/tháng</div>
+              </div>
+              <div class="portfolio-stat">
+                <div class="portfolio-stat-value">15%</div>
+                <div class="portfolio-stat-label">Tỷ lệ chuyển đổi</div>
+              </div>
+              <div class="portfolio-stat">
+                <div class="portfolio-stat-value">2 ngày</div>
+                <div class="portfolio-stat-label">Hoàn thành</div>
+              </div>
+            </div>
+
+            <a href="../index.html#contact" class="btn btn--primary">Yêu cầu báo giá tương tự</a>
+          </div>
+          <div class="portfolio-image animate fade-in-right delay-1">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop" alt="Landing Page Tư Vấn">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-details">
+      <div class="container">
+        <div class="detail-grid">
+          <div class="detail-section animate fade-in">
+            <h2>Tính năng chính</h2>
+            <ul class="detail-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Hero section với video giới thiệu công ty</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Profile đội ngũ chuyên gia tư vấn</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Case studies khách hàng thành công</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Hệ thống đặt lịch tư vấn online</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Live chat với chatbot AI</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Blog section với tips tài chính</span></li>
+            </ul>
+          </div>
+          <div class="detail-section animate fade-in delay-1">
+            <h2>Công nghệ sử dụng</h2>
+            <div class="tech-tags">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Calendly</span>
+              <span class="tech-tag">Tawk.to</span>
+              <span class="tech-tag">Google Analytics</span>
+            </div>
+
+            <h2 style="margin-top: 2rem;">Kết quả đạt được</h2>
+            <ul class="detail-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>80+ lịch hẹn tư vấn mỗi tháng</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Tỷ lệ chuyển đổi từ lead sang khách: 25%</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Doanh thu tăng 150% sau 3 tháng</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        <div class="section-header"><h2 class="animate fade-in">Hình ảnh dự án</h2></div>
+        <div class="gallery-grid">
+          <div class="gallery-item animate fade-in-up delay-1"><img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop" alt="Meeting"></div>
+          <div class="gallery-item animate fade-in-up delay-2"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop" alt="Consulting"></div>
+          <div class="gallery-item animate fade-in-up delay-3"><img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&h=300&fit=crop" alt="Team"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="animate fade-in">Bạn muốn có landing page tương tự?</h2>
+        <p class="animate fade-in delay-1">Liên hệ ngay để được tư vấn miễn phí và nhận báo giá chi tiết cho dự án của bạn.</p>
+        <div class="animate fade-in delay-2">
+          <a href="../index.html#contact" class="btn btn--primary">Nhận báo giá miễn phí</a>
+          <a href="../index.html#portfolio" class="btn btn--secondary">Xem thêm dự án</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 LandingPro. All rights reserved.</p>
+        <p>Made with love in Vietnam</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+</body>
+</html>

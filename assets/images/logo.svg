@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Door/Window Icon -->
+  <g stroke="#10B981" stroke-width="2.5" fill="none">
+    <!-- Outer frame -->
+    <rect x="8" y="8" width="36" height="44" rx="2"/>
+    <!-- Top panels -->
+    <rect x="12" y="12" width="12" height="16" rx="1"/>
+    <rect x="28" y="12" width="12" height="16" rx="1"/>
+    <!-- Bottom panels -->
+    <rect x="12" y="32" width="12" height="16" rx="1"/>
+    <rect x="28" y="32" width="12" height="16" rx="1"/>
+  </g>
+  <!-- Text CHÍ VĨ -->
+  <text x="56" y="40" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="700" fill="#10B981">
+    CHÍ VĨ
+  </text>
+</svg>

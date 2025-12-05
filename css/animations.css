@@ -1,0 +1,475 @@
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ============================================
+   Scroll Animation Classes
+   ============================================ */
+.animate {
+  opacity: 0;
+}
+
+.animate.in-view {
+  animation-duration: 0.6s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.animate.fade-in.in-view {
+  animation-name: fadeIn;
+}
+
+.animate.fade-in-left.in-view {
+  animation-name: fadeInLeft;
+}
+
+.animate.fade-in-right.in-view {
+  animation-name: fadeInRight;
+}
+
+.animate.fade-in-up.in-view {
+  animation-name: fadeInUp;
+}
+
+.animate.scale-in.in-view {
+  animation-name: scaleIn;
+}
+
+/* Staggered animations for grids */
+.animate.delay-1.in-view { animation-delay: 0.1s; }
+.animate.delay-2.in-view { animation-delay: 0.2s; }
+.animate.delay-3.in-view { animation-delay: 0.3s; }
+.animate.delay-4.in-view { animation-delay: 0.4s; }
+.animate.delay-5.in-view { animation-delay: 0.5s; }
+.animate.delay-6.in-view { animation-delay: 0.6s; }
+
+/* ============================================
+   Hover Effects
+   ============================================ */
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+.hover-scale {
+  transition: transform var(--transition-normal);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-normal);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+}
+
+/* ============================================
+   Button Animations
+   ============================================ */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* ============================================
+   Floating Animation
+   ============================================ */
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ============================================
+   Loading Animation
+   ============================================ */
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   Parallax Effect (subtle)
+   ============================================ */
+.parallax {
+  transition: transform 0.1s linear;
+}
+
+/* ============================================
+   Counter Animation
+   ============================================ */
+.counter-animate {
+  transition: all 0.3s ease;
+}
+
+/* ============================================
+   Underline Animation for Links
+   ============================================ */
+.nav-menu a {
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width var(--transition-normal);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   Card Entrance Animation
+   ============================================ */
+.card-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Icon Bounce on Hover
+   ============================================ */
+.icon-bounce:hover svg {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ============================================
+   Smooth Reveal for Images
+   ============================================ */
+.img-reveal {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.img-reveal.loaded {
+  opacity: 1;
+}
+
+/* ============================================
+   Gradient Animation for Hero
+   ============================================ */
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ============================================
+   NEW: Slide-In-Left Animation
+   ============================================ */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate.slide-in-left.in-view {
+  animation-name: slideInLeft;
+}
+
+.slide-in-left {
+  opacity: 0;
+}
+
+/* ============================================
+   NEW: Zoom-In Animation
+   ============================================ */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate.zoom-in.in-view {
+  animation-name: zoomIn;
+}
+
+.zoom-in {
+  opacity: 0;
+}
+
+/* ============================================
+   NEW: Flip-In Animation
+   ============================================ */
+@keyframes flipIn {
+  from {
+    opacity: 0;
+    transform: perspective(400px) rotateX(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(400px) rotateX(0);
+  }
+}
+
+.animate.flip-in.in-view {
+  animation-name: flipIn;
+}
+
+.flip-in {
+  opacity: 0;
+}
+
+/* ============================================
+   NEW: Pulse CTA Animation
+   ============================================ */
+@keyframes pulseCTA {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
+  }
+}
+
+.pulse-cta {
+  animation: pulseCTA 3s ease-in-out infinite;
+}
+
+/* ============================================
+   NEW: Shimmer Effect for CTAs
+   ============================================ */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.btn--shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* ============================================
+   Enhanced Card Glow Hover
+   ============================================ */
+.card-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.card-glow:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 40px rgba(16, 185, 129, 0.15),
+    0 0 0 1px rgba(16, 185, 129, 0.1),
+    0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+/* ============================================
+   Form Focus Glow Effect
+   ============================================ */
+.form-glow:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow:
+    0 0 0 3px rgba(16, 185, 129, 0.1),
+    0 0 15px rgba(16, 185, 129, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   Animated Link Underline
+   ============================================ */
+.animated-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.animated-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.animated-link:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   Header Shrink Animation
+   ============================================ */
+.header--shrink {
+  padding: 0.75rem 0 !important;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header--shrink .logo svg,
+.header--shrink .logo img {
+  height: 32px;
+  transition: height 0.3s ease;
+}
+
+/* ============================================
+   Increased Stagger Delays (0.15s intervals)
+   ============================================ */
+.animate.delay-7.in-view { animation-delay: 0.7s; }
+.animate.delay-8.in-view { animation-delay: 0.8s; }
+.animate.delay-9.in-view { animation-delay: 0.9s; }

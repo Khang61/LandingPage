@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trang chuyên mua bán bất động sản - Sở hữu căn hộ trung tâm với mức giá tốt nhất giai đoạn 1">
+  <title>Trang Chuyên Mua Bán Bất Động Sản | Ưu Đãi Giai Đoạn 1</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-dark: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #f59e0b;
+      --accent-light: #fbbf24;
+      --accent-dark: #d97706;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --success: #10b981;
+      --danger: #ef4444;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 50px rgba(0,0,0,0.15);
+      --shadow-xl: 0 25px 60px rgba(0,0,0,0.2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--gray-800); line-height: 1.7; overflow-x: hidden; }
+
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Animations */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes countdown { from { transform: scale(1.2); } to { transform: scale(1); } }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.7), 0 0 60px rgba(245, 158, 11, 0.3); }
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes borderGlow {
+      0%, 100% { border-color: var(--primary); box-shadow: 0 0 15px rgba(30, 64, 175, 0.3); }
+      50% { border-color: var(--accent); box-shadow: 0 0 25px rgba(245, 158, 11, 0.4); }
+    }
+    @keyframes slideInFromBottom {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .animate { animation: fadeInUp 0.8s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    /* Scroll Reveal */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(50px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal-right.active { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(0.9); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal-scale.active { opacity: 1; transform: scale(1); }
+
+    /* Material Icons */
+    .material-icons, .material-icons-outlined {
+      font-size: inherit;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .icon-sm { font-size: 1rem; }
+    .icon-md { font-size: 1.25rem; }
+    .icon-lg { font-size: 1.5rem; }
+    .icon-xl { font-size: 2rem; }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+    .header-cta {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+    .header-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
+    }
+    .header-phone {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gray-800);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .header-phone:hover { color: var(--primary); }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* ============================================
+       SECTION 1: HERO - Gây WOW trong 5 giây
+       ============================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--gray-900) 0%, var(--primary-dark) 100%);
+      padding-top: 80px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80') center/cover;
+      opacity: 0.3;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(30,64,175,0.85) 0%, rgba(17,24,39,0.9) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 4rem 0;
+    }
+    .hero-text { animation: fadeInLeft 1s ease forwards; }
+
+    /* FOMO Badge - Enhanced */
+    .fomo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(90deg, var(--accent-dark), var(--accent), var(--accent-light), var(--accent), var(--accent-dark));
+      background-size: 200% auto;
+      color: white;
+      padding: 0.6rem 1.25rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      animation: shimmer 3s linear infinite, glow 2s ease-in-out infinite;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .fomo-badge svg { width: 18px; height: 18px; }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    /* Countdown Timer - Enhanced FOMO */
+    .countdown-box {
+      background: linear-gradient(135deg, rgba(30,64,175,0.3) 0%, rgba(59,130,246,0.2) 100%);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .countdown-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+    .countdown-label {
+      color: var(--accent-light);
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .countdown-timer {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .countdown-item {
+      text-align: center;
+    }
+    .countdown-value {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+      min-width: 75px;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .countdown-value::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+    .countdown-unit {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 0.5rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Hero CTAs */
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s;
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(245, 158, 11, 0.5);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    /* Hero Image */
+    .hero-image {
+      position: relative;
+      animation: fadeInRight 1s ease 0.3s forwards;
+      opacity: 0;
+    }
+    .hero-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: var(--shadow-xl);
+    }
+
+    /* Floating Cards - Enhanced */
+    .float-card {
+      position: absolute;
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: float 3s ease-in-out infinite;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.8);
+      transition: all 0.3s ease;
+    }
+    .float-card:hover {
+      transform: translateY(-15px) scale(1.05);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    }
+    .float-card.card-1 { top: 10%; left: -8%; animation-delay: 0s; }
+    .float-card.card-2 { bottom: 20%; right: -8%; animation-delay: 1s; }
+    .float-card.card-3 { bottom: 5%; left: 10%; animation-delay: 2s; }
+    .float-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+    }
+    .float-icon.gold {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+    .float-icon.green {
+      background: linear-gradient(135deg, var(--success), #059669);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    }
+    .float-text strong { display: block; font-size: 1rem; color: var(--gray-900); font-weight: 700; }
+    .float-text span { font-size: 0.8rem; color: var(--gray-600); }
+
+    /* ============================================
+       SECTION 2: USP - Điểm mạnh dự án
+       ============================================ */
+    .usp-section {
+      padding: 6rem 0;
+      background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);
+      position: relative;
+    }
+    .usp-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+    }
+    .usp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .usp-card {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      background: white;
+      border: 2px solid transparent;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .usp-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .usp-card:hover::before {
+      opacity: 1;
+    }
+    .usp-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(30, 64, 175, 0.15);
+    }
+    .usp-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.75rem;
+      color: white;
+      font-size: 2rem;
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
+      transition: all 0.4s;
+    }
+    .usp-card:hover .usp-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 15px 40px rgba(30, 64, 175, 0.4);
+    }
+    .usp-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+      color: var(--gray-900);
+    }
+    .usp-card p {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .usp-card:nth-child(2n) .usp-icon {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+    }
+    .usp-card:nth-child(2n):hover .usp-icon {
+      box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Scarcity Badge */
+    .scarcity-banner {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-weight: 600;
+    }
+    .scarcity-banner span { color: var(--accent); }
+
+    /* ============================================
+       SECTION 3: Gallery & Video
+       ============================================ */
+    .gallery-section {
+      padding: 6rem 0;
+      background: var(--gray-50);
+      position: relative;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .section-header h2 {
+      font-size: 2.75rem;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+    .section-header p {
+      color: var(--gray-600);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 1.5rem auto 0;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(30,64,175,0.3), rgba(245,158,11,0.3));
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 0.4s;
+    }
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.15);
+    }
+    .gallery-item.large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .gallery-item.large img {
+      height: 100%;
+    }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 70%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 2;
+    }
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    .gallery-overlay span {
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transform: translateY(20px);
+      transition: transform 0.4s;
+    }
+    .gallery-item:hover .gallery-overlay span {
+      transform: translateY(0);
+    }
+
+    /* Video Box - Link to YouTube */
+    .video-box {
+      margin-top: 3rem;
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      display: block;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .video-box img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .video-box:hover img {
+      transform: scale(1.05);
+    }
+    .video-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(30,64,175,0.4), rgba(245,158,11,0.3));
+      z-index: 1;
+      transition: opacity 0.4s;
+    }
+    .video-box:hover::before {
+      opacity: 0.7;
+    }
+    .video-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      z-index: 2;
+    }
+    .video-play-btn::before {
+      content: '';
+      position: absolute;
+      inset: -15px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.4);
+      animation: pulse 2s infinite;
+    }
+    .video-box:hover .video-play-btn {
+      transform: translate(-50%, -50%) scale(1.15);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    }
+    .video-play-btn svg {
+      width: 40px;
+      height: 40px;
+      color: var(--primary);
+      margin-left: 6px;
+    }
+    .video-label {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 2;
+      transition: all 0.3s;
+    }
+    .video-box:hover .video-label {
+      background: var(--primary);
+    }
+
+    /* Video Modal */
+    .video-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .video-modal.active {
+      display: flex;
+    }
+    .video-modal-content {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      aspect-ratio: 16/9;
+    }
+    .video-modal-content video {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      background: #000;
+    }
+    .video-modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 5px 15px;
+      transition: transform 0.3s;
+    }
+    .video-modal-close:hover {
+      transform: scale(1.2);
+    }
+
+    /* ============================================
+       SECTION 4: Location - Vị trí & Tiềm năng
+       ============================================ */
+    .location-section {
+      padding: 5rem 0;
+      background: white;
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .location-map {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .location-map img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+    }
+    .location-info h2 {
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--gray-900);
+    }
+    .location-info > p {
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+    }
+
+    /* Distance Items */
+    .distance-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .distance-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--gray-50);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+    }
+    .distance-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .distance-text strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--gray-900);
+    }
+    .distance-text span {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+    }
+    .distance-badge {
+      margin-left: auto;
+      background: var(--success);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ============================================
+       SECTION 5: Pricing & Policy - Chính sách
+       ============================================ */
+    .pricing-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, var(--primary-dark), var(--gray-900));
+      color: white;
+    }
+    .pricing-section .section-header h2 { color: white; }
+    .pricing-section .section-header p { color: rgba(255,255,255,0.7); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .pricing-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent);
+    }
+    .pricing-card.featured {
+      background: white;
+      color: var(--gray-900);
+      transform: scale(1.05);
+      border: 3px solid var(--accent);
+    }
+    .pricing-card.featured:hover {
+      transform: scale(1.08);
+    }
+    .pricing-badge {
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .pricing-card .area {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+    .pricing-card.featured .area { color: var(--gray-600); }
+    .price-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 0.5rem;
+    }
+    .price-value span {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+    .pricing-card.featured .price-value { color: var(--primary); }
+    .price-compare {
+      font-size: 0.9rem;
+      text-decoration: line-through;
+      opacity: 0.6;
+      margin-bottom: 1.5rem;
+    }
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .pricing-features li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .pricing-features li svg {
+      width: 18px;
+      height: 18px;
+      color: var(--success);
+      flex-shrink: 0;
+    }
+    .pricing-card.featured .pricing-features li { color: var(--gray-700); }
+
+    /* Anchoring - So sánh giá */
+    .anchor-box {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      border: 2px dashed rgba(255,255,255,0.3);
+    }
+    .anchor-box h4 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .anchor-compare {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .anchor-item {
+      text-align: center;
+    }
+    .anchor-item .label {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 0.5rem;
+    }
+    .anchor-item .value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+    }
+    .anchor-item .value.old { text-decoration: line-through; opacity: 0.6; }
+    .anchor-item .value.new { color: var(--accent); }
+    .anchor-save {
+      margin-top: 1rem;
+      background: var(--success);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    /* ============================================
+       SECTION 6: Social Proof - Chứng thực
+       ============================================ */
+    .testimonial-section {
+      padding: 5rem 0;
+      background: var(--gray-50);
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .testimonial-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 4rem;
+      color: var(--gray-200);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .testimonial-text {
+      font-size: 1rem;
+      color: var(--gray-700);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .testimonial-info strong {
+      display: block;
+      color: var(--gray-900);
+    }
+    .testimonial-info span {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+    }
+    .testimonial-rating {
+      color: var(--accent);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    /* Media Logos - Authority */
+    .media-section {
+      text-align: center;
+    }
+    .media-title {
+      font-size: 1rem;
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+    }
+    .media-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      opacity: 0.6;
+    }
+    .media-logos img {
+      height: 40px;
+      filter: grayscale(100%);
+      transition: all 0.3s;
+    }
+    .media-logos img:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    /* Stats Counter - Enhanced */
+    .stats-bar {
+      background: linear-gradient(135deg, white, var(--gray-50));
+      border-radius: 24px;
+      padding: 2.5rem 3rem;
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .stats-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+    }
+    .stat-item {
+      text-align: center;
+      position: relative;
+      padding: 1rem 0;
+    }
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--gray-200), transparent);
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    /* ============================================
+       SECTION 7: Floor Plans - Mặt bằng
+       ============================================ */
+    .floorplan-section {
+      padding: 5rem 0;
+      background: white;
+    }
+    .floorplan-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .floorplan-tab {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--gray-200);
+      border-radius: 50px;
+      background: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .floorplan-tab:hover,
+    .floorplan-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    .floorplan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .floorplan-card {
+      background: var(--gray-50);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+    .floorplan-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+    .floorplan-image {
+      height: 200px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .floorplan-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .floorplan-info {
+      padding: 1.5rem;
+    }
+    .floorplan-info h4 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--gray-900);
+    }
+    .floorplan-specs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .floorplan-specs span {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .floorplan-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .floorplan-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .floorplan-download:hover {
+      background: var(--primary-dark);
+    }
+
+    /* ============================================
+       SECTION 8: Lead Form - Đăng ký
+       ============================================ */
+    .form-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 150%;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .form-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-content p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    .form-benefits {
+      list-style: none;
+    }
+    .form-benefits li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .form-benefits li svg {
+      width: 24px;
+      height: 24px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .form-box {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-xl);
+    }
+    .form-box h3 {
+      color: var(--gray-900);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .form-box .form-subtitle {
+      color: var(--gray-600);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      color: var(--gray-700);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--gray-200);
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      font-family: inherit;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+    }
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
+    }
+    .form-privacy {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+
+    /* Urgency Banner in Form */
+    .urgency-banner {
+      background: linear-gradient(135deg, var(--danger), #dc2626);
+      color: white;
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      animation: pulse 2s infinite;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      background: var(--gray-900);
+      color: white;
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .footer-brand p {
+      color: var(--gray-400);
+      font-size: 0.9rem;
+    }
+    .footer h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+    .footer-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: white; }
+    .footer-contact li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--gray-400);
+      font-size: 0.9rem;
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--gray-800);
+      padding-top: 1.5rem;
+      text-align: center;
+      color: var(--gray-500);
+      font-size: 0.85rem;
+    }
+
+    /* ============================================
+       FLOATING CTA - Sticky
+       ============================================ */
+    .floating-cta {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .floating-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .floating-btn:hover {
+      transform: scale(1.1);
+    }
+    .floating-btn.phone { background: var(--success); }
+    .floating-btn.zalo { background: #0068ff; }
+    .floating-btn.form-trigger { background: var(--accent); }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 1024px) {
+      .hero-content,
+      .location-grid,
+      .form-grid { grid-template-columns: 1fr; }
+      .hero-image { margin-top: 2rem; }
+      .float-card { display: none; }
+      .pricing-grid,
+      .testimonial-grid,
+      .floorplan-grid { grid-template-columns: 1fr 1fr; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .header-nav { display: none; }
+      .hero-title { font-size: 2.25rem; }
+      .countdown-timer { flex-wrap: wrap; justify-content: center; }
+      .usp-grid,
+      .gallery-grid,
+      .pricing-grid,
+      .testimonial-grid,
+      .floorplan-grid { grid-template-columns: 1fr; }
+      .gallery-item.large { grid-column: span 1; grid-row: span 1; }
+      .gallery-item.large img { height: 250px; }
+      .pricing-card.featured { transform: none; }
+      .pricing-card.featured:hover { transform: translateY(-10px); }
+      .anchor-compare { flex-direction: column; gap: 1.5rem; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .floating-cta { bottom: 1rem; right: 1rem; }
+      .floating-btn { width: 50px; height: 50px; font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="../index.html" class="logo">
+          <div class="logo-icon"><span class="material-icons">home</span></div>
+          <span>BDS Pro</span>
+        </a>
+        <nav class="header-nav">
+          <a href="tel:0901234567" class="header-phone">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            0901 234 567
+          </a>
+          <a href="#form" class="header-cta">Nhận Bảng Giá</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================
+         SECTION 1: HERO
+         ============================================ -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <!-- FOMO Badge -->
+            <div class="fomo-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              Chỉ còn 27/100 căn đẹp nhất
+            </div>
+
+            <h1 class="hero-title">
+              Sở Hữu Căn Hộ Trung Tâm<br>
+              <span class="highlight">Giá Tốt Nhất Giai Đoạn 1</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              Giới hạn chỉ 40 suất mở bán đầu tiên - Ưu đãi độc quyền chiết khấu đến 12% + Tặng gói nội thất 200 triệu
+            </p>
+
+            <!-- Countdown Timer - FOMO -->
+            <div class="countdown-box">
+              <div class="countdown-label">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Ưu đãi kết thúc sau:
+              </div>
+              <div class="countdown-timer">
+                <div class="countdown-item">
+                  <div class="countdown-value" id="days">07</div>
+                  <div class="countdown-unit">Ngày</div>
+                </div>
+                <div class="countdown-item">
+                  <div class="countdown-value" id="hours">12</div>
+                  <div class="countdown-unit">Giờ</div>
+                </div>
+                <div class="countdown-item">
+                  <div class="countdown-value" id="minutes">45</div>
+                  <div class="countdown-unit">Phút</div>
+                </div>
+                <div class="countdown-item">
+                  <div class="countdown-value" id="seconds">30</div>
+                  <div class="countdown-unit">Giây</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-ctas">
+              <a href="#form" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Nhận Bảng Giá Nội Bộ
+              </a>
+              <a href="#gallery" class="btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Xem Video 3D
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-image">
+            <img src="images/batdongsan/penthouse.jpg" alt="Căn hộ cao cấp">
+
+            <!-- Floating Cards -->
+            <div class="float-card card-1">
+              <div class="float-icon gold"><span class="material-icons">location_on</span></div>
+              <div class="float-text">
+                <strong>Vị trí vàng</strong>
+                <span>Trung tâm Quận 2</span>
+              </div>
+            </div>
+            <div class="float-card card-2">
+              <div class="float-icon"><span class="material-icons">trending_up</span></div>
+              <div class="float-text">
+                <strong>+35% / năm</strong>
+                <span>Tiềm năng tăng giá</span>
+              </div>
+            </div>
+            <div class="float-card card-3">
+              <div class="float-icon green"><span class="material-icons">verified</span></div>
+              <div class="float-text">
+                <strong>Pháp lý rõ ràng</strong>
+                <span>Sổ hồng riêng</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scarcity Banner -->
+    <div class="scarcity-banner">
+      <span class="material-icons icon-md">local_fire_department</span> GIỎ HÀNG NỘI BỘ ĐỘC QUYỀN - Chỉ dành cho <span>20 khách hàng đầu tiên</span> đăng ký hôm nay!
+    </div>
+
+    <!-- ============================================
+         SECTION 2: USP - Điểm mạnh
+         ============================================ -->
+    <section class="usp-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Tại Sao Chọn Dự Án Này?</h2>
+          <p>6 lý do khiến nhà đầu tư thông minh không thể bỏ lỡ cơ hội này</p>
+        </div>
+        <div class="usp-grid">
+          <div class="usp-card animate">
+            <div class="usp-icon"><span class="material-icons">location_on</span></div>
+            <h3>Vị Trí Vàng</h3>
+            <p>Chỉ 1 bước chân đến trung tâm thành phố, kết nối Metro tuyến số 1</p>
+          </div>
+          <div class="usp-card animate delay-1">
+            <div class="usp-icon"><span class="material-icons">payments</span></div>
+            <h3>Giá Giai Đoạn F1</h3>
+            <p>Lợi nhuận ngay khi mở bán, thấp hơn 30% so với khu vực xung quanh</p>
+          </div>
+          <div class="usp-card animate delay-2">
+            <div class="usp-icon"><span class="material-icons">description</span></div>
+            <h3>Pháp Lý Minh Bạch</h3>
+            <p>Chủ đầu tư uy tín, sổ hồng riêng từng căn, pháp lý 100% hoàn chỉnh</p>
+          </div>
+          <div class="usp-card animate delay-3">
+            <div class="usp-icon"><span class="material-icons">account_balance</span></div>
+            <h3>Thanh Toán Linh Hoạt</h3>
+            <p>Chỉ 30% nhận nhà, hỗ trợ vay 0% lãi suất trong 18 tháng đầu</p>
+          </div>
+          <div class="usp-card animate delay-4">
+            <div class="usp-icon"><span class="material-icons">pool</span></div>
+            <h3>Tiện Ích 5 Sao</h3>
+            <p>27 tiện ích nội khu chuẩn resort: hồ bơi, gym, công viên, BBQ...</p>
+          </div>
+          <div class="usp-card animate delay-4">
+            <div class="usp-icon"><span class="material-icons">card_giftcard</span></div>
+            <h3>Ưu Đãi Khủng</h3>
+            <p>Chiết khấu đến 12% + Tặng gói nội thất cao cấp trị giá 200 triệu</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: Gallery & Video
+         ============================================ -->
+    <section id="gallery" class="gallery-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Hình Ảnh Phối Cảnh 3D</h2>
+          <p>Trải nghiệm không gian sống đẳng cấp qua từng góc nhìn</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item large">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop" alt="Tổng quan dự án">
+            <div class="gallery-overlay"><span>Tổng quan dự án</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop" alt="Phòng khách">
+            <div class="gallery-overlay"><span>Phòng khách</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&h=300&fit=crop" alt="Phòng ngủ">
+            <div class="gallery-overlay"><span>Phòng ngủ master</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/batdongsan/image.png" alt="Hồ bơi">
+            <div class="gallery-overlay"><span>Hồ bơi tràn bờ</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=400&h=300&fit=crop" alt="Công viên">
+            <div class="gallery-overlay"><span>Công viên nội khu</span></div>
+          </div>
+        </div>
+
+        <!-- Video Box -->
+        <div class="video-box" onclick="openVideoModal()">
+          <img src="https://img.youtube.com/vi/1xdYbDGJ8-w/maxresdefault.jpg" alt="Video 3D Tour">
+          <div class="video-play-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <span class="video-label">Xem Video 3D Tour</span>
+        </div>
+
+        <!-- Video Modal -->
+        <div id="videoModal" class="video-modal" onclick="closeVideoModal(event)">
+          <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal(event)">&times;</button>
+            <video id="videoPlayer" controls>
+              <source src="videos/tour-3d.mp4" type="video/mp4">
+              Trình duyệt không hỗ trợ video.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: Location
+         ============================================ -->
+    <section class="location-section">
+      <div class="container">
+        <div class="location-grid">
+          <div class="location-map">
+            <img src="images/batdongsan/vietnam.jpg" alt="Bản đồ vị trí">
+          </div>
+          <div class="location-info">
+            <h2>Vị Trí Đắc Địa - Tiềm Năng Tăng Giá Vượt Trội</h2>
+            <p>Tọa lạc ngay trung tâm khu đô thị mới, kết nối hoàn hảo đến các tiện ích xung quanh</p>
+
+            <div class="distance-list">
+              <div class="distance-item">
+                <div class="distance-icon"><span class="material-icons">subway</span></div>
+                <div class="distance-text">
+                  <strong>Ga Metro Thảo Điền</strong>
+                  <span>Tuyến Metro số 1 - Bến Thành</span>
+                </div>
+                <div class="distance-badge">500m</div>
+              </div>
+              <div class="distance-item">
+                <div class="distance-icon"><span class="material-icons">school</span></div>
+                <div class="distance-text">
+                  <strong>Trường Quốc tế BIS</strong>
+                  <span>Giáo dục chuẩn quốc tế</span>
+                </div>
+                <div class="distance-badge">800m</div>
+              </div>
+              <div class="distance-item">
+                <div class="distance-icon"><span class="material-icons">local_hospital</span></div>
+                <div class="distance-text">
+                  <strong>Bệnh viện Quốc tế</strong>
+                  <span>Dịch vụ y tế 24/7</span>
+                </div>
+                <div class="distance-badge">1.2km</div>
+              </div>
+              <div class="distance-item">
+                <div class="distance-icon"><span class="material-icons">shopping_cart</span></div>
+                <div class="distance-text">
+                  <strong>AEON Mall</strong>
+                  <span>Trung tâm thương mại lớn nhất</span>
+                </div>
+                <div class="distance-badge">2km</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 5: Pricing & Policy
+         ============================================ -->
+    <section class="pricing-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Bảng Giá Ưu Đãi Giai Đoạn 1</h2>
+          <p>Giá chỉ áp dụng cho 40 khách hàng đầu tiên đăng ký trong tuần này</p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Studio</h3>
+            <div class="area">35 - 45 m²</div>
+            <div class="price-value">1.8 <span>tỷ</span></div>
+            <div class="price-compare">Giá gốc: 2.1 tỷ</div>
+            <ul class="pricing-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 1 phòng ngủ</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Ban công view thành phố</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Full nội thất cơ bản</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Thanh toán 1%/tháng</li>
+            </ul>
+            <a href="#form" class="btn-primary" style="width:100%;justify-content:center;">Đăng Ký Ngay</a>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="pricing-badge">HOT NHẤT</div>
+            <h3>2 Phòng Ngủ</h3>
+            <div class="area">65 - 75 m²</div>
+            <div class="price-value">2.8 <span>tỷ</span></div>
+            <div class="price-compare">Giá gốc: 3.5 tỷ</div>
+            <ul class="pricing-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 2 phòng ngủ + 2 WC</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> View sông Sài Gòn</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Tặng gói nội thất 200tr</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> CK thêm 5% thanh toán sớm</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Vay 0% lãi 18 tháng</li>
+            </ul>
+            <a href="#form" class="btn-primary" style="width:100%;justify-content:center;">Giữ Suất Ngay</a>
+          </div>
+
+          <div class="pricing-card">
+            <h3>3 Phòng Ngủ</h3>
+            <div class="area">95 - 120 m²</div>
+            <div class="price-value">4.2 <span>tỷ</span></div>
+            <div class="price-compare">Giá gốc: 5.0 tỷ</div>
+            <ul class="pricing-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 3 phòng ngủ + 2 WC</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Penthouse view panorama</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Full nội thất cao cấp</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Parking 2 xe hơi</li>
+            </ul>
+            <a href="#form" class="btn-primary" style="width:100%;justify-content:center;">Đăng Ký Ngay</a>
+          </div>
+        </div>
+
+        <!-- Anchoring - So sánh giá -->
+        <div class="anchor-box">
+          <h4><span class="material-icons icon-md">analytics</span> So Sánh Giá Với Khu Vực Xung Quanh</h4>
+          <div class="anchor-compare">
+            <div class="anchor-item">
+              <div class="label">Giá trung bình khu vực</div>
+              <div class="value old">85 triệu/m²</div>
+            </div>
+            <div class="anchor-item">
+              <div class="label">Giá dự án này (GĐ1)</div>
+              <div class="value new">52 triệu/m²</div>
+            </div>
+          </div>
+          <div class="anchor-save"><span class="material-icons icon-md">celebration</span> Tiết kiệm đến 33 triệu/m² so với thị trường!</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 6: Social Proof
+         ============================================ -->
+    <section class="testimonial-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Khách Hàng Đã Tin Tưởng</h2>
+          <p>Hơn 500 khách hàng đã đăng ký nhận thông tin dự án</p>
+        </div>
+
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Tôi đã mua căn hộ giai đoạn 1 và giờ giá đã tăng 40%. Quyết định sáng suốt nhất của tôi!"</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Nguyễn Văn Minh" class="testimonial-avatar">
+              <div class="testimonial-info">
+                <strong>Nguyễn Văn Minh</strong>
+                <span>Doanh nhân, Quận 1</span>
+                <div class="testimonial-rating">★★★★★</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Pháp lý rõ ràng, tiến độ xây dựng đúng cam kết. Rất yên tâm khi đầu tư vào đây."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Trần Thị Hương" class="testimonial-avatar">
+              <div class="testimonial-info">
+                <strong>Trần Thị Hương</strong>
+                <span>Giám đốc Marketing</span>
+                <div class="testimonial-rating">★★★★★</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Mua 2 căn để cho thuê, doanh thu ổn định 25 triệu/tháng. Đầu tư sinh lời tốt!"</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Lê Hoàng Nam" class="testimonial-avatar">
+              <div class="testimonial-info">
+                <strong>Lê Hoàng Nam</strong>
+                <span>Nhà đầu tư BĐS</span>
+                <div class="testimonial-rating">★★★★★</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Media Logos -->
+        <div class="media-section">
+          <p class="media-title">Được đưa tin bởi các báo uy tín</p>
+          <div class="media-logos">
+            <img src="https://via.placeholder.com/120x40?text=VnExpress" alt="VnExpress">
+            <img src="https://via.placeholder.com/120x40?text=CafeF" alt="CafeF">
+            <img src="https://via.placeholder.com/120x40?text=BatDongSan" alt="BatDongSan">
+            <img src="https://via.placeholder.com/120x40?text=Dantri" alt="Dân Trí">
+          </div>
+        </div>
+
+        <!-- Stats Counter -->
+        <div class="stats-bar">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Khách đã đăng ký</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">73</div>
+            <div class="stat-label">Căn đã bán</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">35%</div>
+            <div class="stat-label">Tăng giá từ GĐ1</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Khách hài lòng</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 7: Floor Plans
+         ============================================ -->
+    <section class="floorplan-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Mặt Bằng & Layout Căn Hộ</h2>
+          <p>Thiết kế tối ưu công năng, tận dụng tối đa diện tích</p>
+        </div>
+
+        <div class="floorplan-tabs">
+          <button class="floorplan-tab active">Studio</button>
+          <button class="floorplan-tab">2 Phòng Ngủ</button>
+          <button class="floorplan-tab">3 Phòng Ngủ</button>
+        </div>
+
+        <div class="floorplan-grid">
+          <div class="floorplan-card">
+            <div class="floorplan-image">
+              <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=400&h=300&fit=crop" alt="Layout A1">
+            </div>
+            <div class="floorplan-info">
+              <h4>Layout A1 - View Hồ Bơi</h4>
+              <div class="floorplan-specs">
+                <span><span class="material-icons icon-sm">square_foot</span> 65 m²</span>
+                <span><span class="material-icons icon-sm">king_bed</span> 2 PN</span>
+                <span><span class="material-icons icon-sm">shower</span> 2 WC</span>
+              </div>
+              <div class="floorplan-price">Từ 2.8 tỷ</div>
+              <a href="#form" class="floorplan-download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Tải PDF
+              </a>
+            </div>
+          </div>
+
+          <div class="floorplan-card">
+            <div class="floorplan-image">
+              <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&h=300&fit=crop" alt="Layout B2">
+            </div>
+            <div class="floorplan-info">
+              <h4>Layout B2 - View Sông</h4>
+              <div class="floorplan-specs">
+                <span><span class="material-icons icon-sm">square_foot</span> 75 m²</span>
+                <span><span class="material-icons icon-sm">king_bed</span> 2 PN</span>
+                <span><span class="material-icons icon-sm">shower</span> 2 WC</span>
+              </div>
+              <div class="floorplan-price">Từ 3.2 tỷ</div>
+              <a href="#form" class="floorplan-download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Tải PDF
+              </a>
+            </div>
+          </div>
+
+          <div class="floorplan-card">
+            <div class="floorplan-image">
+              <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400&h=300&fit=crop" alt="Layout C3">
+            </div>
+            <div class="floorplan-info">
+              <h4>Layout C3 - Penthouse</h4>
+              <div class="floorplan-specs">
+                <span><span class="material-icons icon-sm">square_foot</span> 120 m²</span>
+                <span><span class="material-icons icon-sm">king_bed</span> 3 PN</span>
+                <span><span class="material-icons icon-sm">shower</span> 3 WC</span>
+              </div>
+              <div class="floorplan-price">Từ 4.8 tỷ</div>
+              <a href="#form" class="floorplan-download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Tải PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 8: Lead Form
+         ============================================ -->
+    <section id="form" class="form-section">
+      <div class="container">
+        <div class="form-grid">
+          <div class="form-content">
+            <h2>Nhận Bảng Giá & Ưu Đãi Nội Bộ</h2>
+            <p>Đăng ký ngay để nhận thông tin chi tiết về dự án và các chính sách ưu đãi dành riêng cho bạn</p>
+
+            <ul class="form-benefits">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Bảng giá cập nhật mới nhất
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Giỏ hàng nội bộ - Căn đẹp nhất
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Lịch thanh toán chi tiết
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Tư vấn đầu tư 1-1 miễn phí
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Đặt lịch xem nhà mẫu VIP
+              </li>
+            </ul>
+          </div>
+
+          <div class="form-box">
+            <!-- Urgency Banner -->
+            <div class="urgency-banner">
+              <span class="material-icons icon-md">schedule</span> Chỉ còn 27 suất ưu đãi - Đăng ký ngay!
+            </div>
+
+            <h3>Đăng Ký Nhận Thông Tin</h3>
+            <p class="form-subtitle">Chuyên viên sẽ liên hệ trong 30 phút</p>
+
+            <form id="leadForm">
+              <div class="form-group">
+                <label for="name">Họ và tên *</label>
+                <input type="text" id="name" name="name" placeholder="Nhập họ tên của bạn" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Số điện thoại *</label>
+                <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Nhập email (không bắt buộc)">
+              </div>
+
+              <div class="form-group">
+                <label for="purpose">Mục đích *</label>
+                <select id="purpose" name="purpose" required>
+                  <option value="">-- Chọn mục đích --</option>
+                  <option value="invest">Đầu tư sinh lời</option>
+                  <option value="live">Mua để ở</option>
+                  <option value="both">Cả hai</option>
+                </select>
+              </div>
+
+              <button type="submit" class="form-submit">
+                Nhận Bảng Giá Ngay
+              </button>
+
+              <p class="form-privacy"><span class="material-icons icon-sm">lock</span> Thông tin của bạn được bảo mật tuyệt đối</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>BDS Pro</h3>
+          <p>Trang chuyên mua bán bất động sản uy tín hàng đầu Việt Nam. Kết nối người mua với những dự án tiềm năng nhất.</p>
+        </div>
+        <div>
+          <h4>Liên Kết</h4>
+          <ul class="footer-links">
+            <li><a href="#gallery">Hình ảnh dự án</a></li>
+            <li><a href="#pricing">Bảng giá</a></li>
+            <li><a href="#form">Đăng ký tư vấn</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Liên Hệ</h4>
+          <ul class="footer-links footer-contact">
+            <li><span class="material-icons icon-sm">location_on</span> 123 Nguyễn Huệ, Quận 1, TP.HCM</li>
+            <li><span class="material-icons icon-sm">phone</span> Hotline: 0901 234 567</li>
+            <li><span class="material-icons icon-sm">email</span> info@bdspro.vn</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 BDS Pro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTAs -->
+  <div class="floating-cta">
+    <a href="tel:0901234567" class="floating-btn phone" title="Gọi ngay"><span class="material-icons">phone</span></a>
+    <a href="https://zalo.me/0901234567" class="floating-btn zalo" title="Chat Zalo"><span class="material-icons">chat</span></a>
+    <a href="#form" class="floating-btn form-trigger" title="Đăng ký"><span class="material-icons">edit_note</span></a>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Video Modal Functions
+    function openVideoModal() {
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('videoPlayer');
+      modal.classList.add('active');
+      video.play();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal(event) {
+      if (event.target.classList.contains('video-modal') || event.target.classList.contains('video-modal-close')) {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('videoPlayer');
+        modal.classList.remove('active');
+        video.pause();
+        video.currentTime = 0;
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('videoPlayer');
+        if (modal.classList.contains('active')) {
+          modal.classList.remove('active');
+          video.pause();
+          video.currentTime = 0;
+          document.body.style.overflow = '';
+        }
+      }
+    });
+
+    // Countdown Timer
+    function updateCountdown() {
+      const endDate = new Date();
+      endDate.setDate(endDate.getDate() + 7);
+
+      const now = new Date();
+      const diff = endDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Form submission
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Cảm ơn bạn đã đăng ký! Chuyên viên sẽ liên hệ trong 30 phút.');
+      this.reset();
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+      } else {
+        header.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
+      }
+    });
+
+    // Scroll Reveal Animation
+    function scrollReveal() {
+      const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+      reveals.forEach((el, i) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const revealPoint = 150;
+
+        if (elementTop < windowHeight - revealPoint) {
+          el.style.transitionDelay = (i % 6) * 0.1 + 's';
+          el.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', scrollReveal);
+    window.addEventListener('load', scrollReveal);
+
+    // Counter Animation for Stats
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-number');
+
+      counters.forEach(counter => {
+        const target = counter.textContent;
+        const hasPlus = target.includes('+');
+        const hasPercent = target.includes('%');
+        const numValue = parseInt(target.replace(/[^0-9]/g, ''));
+
+        let current = 0;
+        const increment = numValue / 50;
+        const duration = 2000;
+
+        const updateCounter = () => {
+          current += increment;
+          if (current < numValue) {
+            let display = Math.ceil(current);
+            if (hasPlus && hasPercent) counter.textContent = display + '%';
+            else if (hasPlus) counter.textContent = display + '+';
+            else if (hasPercent) counter.textContent = display + '%';
+            else counter.textContent = display;
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target;
+          }
+        };
+
+        // Only animate when in view
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              updateCounter();
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        observer.observe(counter);
+      });
+    }
+
+    animateCounters();
+
+    // Add ripple effect to buttons
+    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.style.cssText = `
+          position: absolute;
+          background: rgba(255,255,255,0.3);
+          border-radius: 50%;
+          transform: scale(0);
+          animation: ripple 0.6s linear;
+          pointer-events: none;
+        `;
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // Add keyframe for ripple
+    const style = document.createElement('style');
+    style.textContent = '@keyframes ripple { to { transform: scale(4); opacity: 0; } }';
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
