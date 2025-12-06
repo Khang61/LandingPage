@@ -24,6 +24,7 @@
     let scrollDelta = 0;
     let ticking = false;
     const hideThreshold = 20;
+    const showThreshold = 50;
 
     function updateHeader() {
       const currentScrollY = window.scrollY;
@@ -37,8 +38,8 @@
         header.classList.add('header--hidden');
         scrollDelta = 0;
       }
-      // Show when scrolling up 20px
-      else if (scrollDelta < -hideThreshold) {
+      // Show when scrolling up 50px
+      else if (scrollDelta < -showThreshold) {
         header.classList.remove('header--hidden');
         scrollDelta = 0;
       }
