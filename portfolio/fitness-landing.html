@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife - Phòng Tập & Personal Training</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#E53935;--primary-dark:#C62828;--primary-light:#EF5350;--accent:#FF7043;--accent-light:#FFCCBC;--white:#FFF;--gray-50:#FAFAFA;--gray-100:#F5F5F5;--gray-200:#EEE;--gray-600:#757575;--gray-800:#424242;--gray-900:#212121;--shadow-sm:0 2px 8px rgba(0,0,0,.08);--shadow-md:0 8px 24px rgba(0,0,0,.12);--shadow-lg:0 16px 48px rgba(0,0,0,.15)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Be Vietnam Pro',sans-serif;color:var(--gray-800);line-height:1.7;overflow-x:hidden;background:var(--white)}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes fadeInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(229,57,53,.1);transition:all .3s}
+        header.scrolled{box-shadow:var(--shadow-md)}
+        .header-container{max-width:1400px;margin:0 auto;padding:.8rem 2rem;display:flex;justify-content:space-between;align-items:center}
+        .logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+        .logo-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:var(--shadow-sm)}
+        .logo-text{font-size:1.6rem;font-weight:800;color:var(--primary)}
+        .logo-sub{font-size:.65rem;color:var(--gray-600);letter-spacing:1px;text-transform:uppercase}
+        nav{display:flex;gap:2rem;align-items:center}
+        nav a{text-decoration:none;color:var(--gray-800);font-weight:500;font-size:.95rem;transition:color .3s}
+        nav a:hover{color:var(--primary)}
+        .header-cta{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:.8rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s;box-shadow:0 4px 15px rgba(229,57,53,.3)}
+        .header-cta:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(229,57,53,.4)}
+        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--gray-900),#1a1a1a);padding-top:80px}
+        .hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:150%;background:linear-gradient(135deg,rgba(229,57,53,.3),transparent 60%);border-radius:50%;opacity:.5}
+        .hero-container{max-width:1400px;margin:0 auto;padding:4rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+        .hero-content{animation:fadeInLeft 1s ease-out forwards}
+        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;color:var(--accent);margin-bottom:1.5rem;border:1px solid rgba(255,112,67,.3)}
+        .hero-title{font-size:3.2rem;font-weight:900;line-height:1.1;color:#fff;margin-bottom:1.5rem}
+        .hero-title .highlight{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:1.1rem;color:rgba(255,255,255,.7);margin-bottom:2rem;max-width:500px}
+        .hero-stats{display:flex;gap:2.5rem;margin-bottom:2.5rem}
+        .stat-item{text-align:left}
+        .stat-number{font-size:2.5rem;font-weight:800;color:var(--primary);line-height:1}
+        .stat-label{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:.3rem}
+        .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+        .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:1rem;transition:all .3s;box-shadow:0 8px 25px rgba(229,57,53,.35)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(229,57,53,.45)}
+        .btn-secondary{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:#fff;padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:1rem;transition:all .3s;border:2px solid rgba(255,255,255,.3)}
+        .btn-secondary:hover{background:rgba(255,255,255,.1);border-color:var(--primary)}
+        .hero-image{position:relative;animation:fadeInRight 1s ease-out .3s forwards;opacity:0}
+        .hero-image-main{width:100%;max-width:520px;height:620px;object-fit:cover;border-radius:24px;box-shadow:var(--shadow-lg)}
+        .hero-float-card{position:absolute;background:#fff;padding:1rem 1.2rem;border-radius:16px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:.8rem;animation:float 3s ease-in-out infinite}
+        .hero-float-card.card-1{top:10%;right:-5%;animation-delay:.5s}
+        .hero-float-card.card-2{bottom:25%;left:-5%;animation-delay:1s}
+        .float-icon{width:45px;height:45px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+        .float-text strong{display:block;font-size:.95rem;color:var(--gray-900)}
+        .float-text span{font-size:.75rem;color:var(--gray-600)}
+        .section{padding:6rem 2rem}
+        .section-header{text-align:center;margin-bottom:4rem}
+        .section-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--accent-light),#fff);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;color:var(--primary);margin-bottom:1rem;border:1px solid var(--accent-light)}
+        .section-title{font-size:2.5rem;font-weight:800;color:var(--gray-900);margin-bottom:1rem}
+        .section-subtitle{font-size:1.1rem;color:var(--gray-600);max-width:600px;margin:0 auto}
+        .programs-section{background:var(--gray-50)}
+        .programs-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+        .program-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all .3s}
+        .program-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg)}
+        .program-image{width:100%;height:200px;object-fit:cover}
+        .program-content{padding:1.5rem}
+        .program-tag{display:inline-block;background:var(--accent-light);color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:600;margin-bottom:.8rem}
+        .program-title{font-size:1.3rem;font-weight:700;color:var(--gray-900);margin-bottom:.5rem}
+        .program-desc{font-size:.9rem;color:var(--gray-600);margin-bottom:1rem}
+        .program-meta{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--gray-200)}
+        .program-price{font-size:1.2rem;font-weight:800;color:var(--primary)}
+        .program-duration{font-size:.85rem;color:var(--gray-600)}
+        .trainers-section{background:var(--white)}
+        .trainers-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+        .trainer-card{text-align:center}
+        .trainer-image{width:180px;height:180px;border-radius:50%;object-fit:cover;margin:0 auto 1rem;border:4px solid var(--accent-light)}
+        .trainer-name{font-size:1.1rem;font-weight:700;color:var(--gray-900)}
+        .trainer-role{font-size:.9rem;color:var(--primary);margin-bottom:.5rem}
+        .trainer-exp{font-size:.85rem;color:var(--gray-600)}
+        .cta-section{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:5rem 2rem;text-align:center}
+        .cta-container{max-width:800px;margin:0 auto}
+        .cta-title{font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:1rem}
+        .cta-subtitle{font-size:1.1rem;color:rgba(255,255,255,.8);margin-bottom:2rem}
+        .cta-form{display:flex;gap:1rem;max-width:500px;margin:0 auto}
+        .cta-input{flex:1;padding:1rem 1.5rem;border:none;border-radius:12px;font-size:1rem;font-family:inherit}
+        .cta-btn{background:#fff;color:var(--primary);padding:1rem 2rem;border:none;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;transition:all .3s}
+        .cta-btn:hover{transform:scale(1.05)}
+        footer{background:var(--gray-900);color:#fff;padding:3rem 2rem;text-align:center}
+        .footer-logo{font-size:1.5rem;font-weight:800;margin-bottom:1rem}
+        .footer-text{color:rgba(255,255,255,.6);font-size:.9rem}
+        @media(max-width:1024px){.hero-container,.programs-grid{grid-template-columns:1fr}.trainers-grid{grid-template-columns:repeat(2,1fr)}.hero-title{font-size:2.5rem}.hero-image{display:none}}
+        @media(max-width:768px){.header-container{padding:.8rem 1rem}nav{display:none}.programs-grid,.trainers-grid{grid-template-columns:1fr}.cta-form{flex-direction:column}.hero-stats{flex-wrap:wrap;gap:1.5rem}}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">💪</div>
+                <div>
+                    <div class="logo-text">FitLife</div>
+                    <div class="logo-sub">Transform Your Body</div>
+                </div>
+            </a>
+            <nav>
+                <a href="#programs">Chương Trình</a>
+                <a href="#trainers">Huấn Luyện Viên</a>
+                <a href="#pricing">Bảng Giá</a>
+                <a href="#contact">Liên Hệ</a>
+            </nav>
+            <a href="#contact" class="header-cta">Đăng Ký Ngay</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">🔥 Ưu đãi 50% tháng đầu tiên</div>
+                <h1 class="hero-title">Thay Đổi <span class="highlight">Vóc Dáng</span><br>Thay Đổi Cuộc Sống</h1>
+                <p class="hero-subtitle">Hệ thống phòng tập hiện đại cùng đội ngũ PT chuyên nghiệp. Cam kết giúp bạn đạt được mục tiêu sức khỏe chỉ trong 90 ngày.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Học viên đã thay đổi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Huấn luyện viên</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Hài lòng</div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">🎯 Đăng Ký Tập Thử Miễn Phí</a>
+                    <a href="#programs" class="btn-secondary">Xem Chương Trình</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=700&fit=crop" alt="Fitness Training" class="hero-image-main">
+                <div class="hero-float-card card-1">
+                    <div class="float-icon">🏋️</div>
+                    <div class="float-text">
+                        <strong>200+ Thiết bị</strong>
+                        <span>Hiện đại, đầy đủ</span>
+                    </div>
+                </div>
+                <div class="hero-float-card card-2">
+                    <div class="float-icon">⭐</div>
+                    <div class="float-text">
+                        <strong>4.9/5 Đánh giá</strong>
+                        <span>Từ 500+ học viên</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="section programs-section">
+        <div class="section-header">
+            <div class="section-badge">💪 Chương Trình Tập Luyện</div>
+            <h2 class="section-title">Lựa Chọn Phù Hợp Với Bạn</h2>
+            <p class="section-subtitle">Đa dạng chương trình từ cơ bản đến nâng cao, phù hợp mọi mục tiêu</p>
+        </div>
+        <div class="programs-grid">
+            <div class="program-card">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=250&fit=crop" alt="Weight Loss" class="program-image">
+                <div class="program-content">
+                    <span class="program-tag">Phổ biến</span>
+                    <h3 class="program-title">Giảm Cân Hiệu Quả</h3>
+                    <p class="program-desc">Chương trình kết hợp cardio và strength training, giúp đốt mỡ tối ưu.</p>
+                    <div class="program-meta">
+                        <span class="program-price">1.500.000đ/tháng</span>
+                        <span class="program-duration">12 buổi/tháng</span>
+                    </div>
+                </div>
+            </div>
+            <div class="program-card">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c149a?w=400&h=250&fit=crop" alt="Muscle Building" class="program-image">
+                <div class="program-content">
+                    <span class="program-tag">Premium</span>
+                    <h3 class="program-title">Tăng Cơ Bắp</h3>
+                    <p class="program-desc">Lộ trình tập nặng chuyên nghiệp, kết hợp chế độ dinh dưỡng khoa học.</p>
+                    <div class="program-meta">
+                        <span class="program-price">2.500.000đ/tháng</span>
+                        <span class="program-duration">16 buổi/tháng</span>
+                    </div>
+                </div>
+            </div>
+            <div class="program-card">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=250&fit=crop" alt="Yoga" class="program-image">
+                <div class="program-content">
+                    <span class="program-tag">Mới</span>
+                    <h3 class="program-title">Yoga & Flexibility</h3>
+                    <p class="program-desc">Cải thiện sự dẻo dai, giảm stress và nâng cao sức khỏe tinh thần.</p>
+                    <div class="program-meta">
+                        <span class="program-price">1.200.000đ/tháng</span>
+                        <span class="program-duration">8 buổi/tháng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trainers" class="section trainers-section">
+        <div class="section-header">
+            <div class="section-badge">👨‍🏫 Đội Ngũ Chuyên Nghiệp</div>
+            <h2 class="section-title">Huấn Luyện Viên Hàng Đầu</h2>
+            <p class="section-subtitle">Đội ngũ PT được chứng nhận quốc tế, giàu kinh nghiệm</p>
+        </div>
+        <div class="trainers-grid">
+            <div class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=200&h=200&fit=crop" alt="Trainer" class="trainer-image">
+                <h3 class="trainer-name">Nguyễn Văn Minh</h3>
+                <p class="trainer-role">Head Coach</p>
+                <p class="trainer-exp">10 năm kinh nghiệm</p>
+            </div>
+            <div class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=200&h=200&fit=crop" alt="Trainer" class="trainer-image">
+                <h3 class="trainer-name">Trần Thị Mai</h3>
+                <p class="trainer-role">Yoga Instructor</p>
+                <p class="trainer-exp">7 năm kinh nghiệm</p>
+            </div>
+            <div class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=200&h=200&fit=crop" alt="Trainer" class="trainer-image">
+                <h3 class="trainer-name">Lê Hoàng Nam</h3>
+                <p class="trainer-role">Strength Coach</p>
+                <p class="trainer-exp">8 năm kinh nghiệm</p>
+            </div>
+            <div class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1609899464726-209befadc587?w=200&h=200&fit=crop" alt="Trainer" class="trainer-image">
+                <h3 class="trainer-name">Phạm Thùy Linh</h3>
+                <p class="trainer-role">Cardio Specialist</p>
+                <p class="trainer-exp">5 năm kinh nghiệm</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Sẵn Sàng Thay Đổi?</h2>
+            <p class="cta-subtitle">Đăng ký ngay để nhận buổi tập thử miễn phí và tư vấn từ chuyên gia</p>
+            <form class="cta-form">
+                <input type="tel" placeholder="Số điện thoại của bạn" class="cta-input">
+                <button type="submit" class="cta-btn">Đăng Ký Ngay</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">💪 FitLife</div>
+        <p class="footer-text">© 2024 FitLife. Thiết kế bởi Chí Vĩ - VHITEK</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll',()=>{document.querySelector('header').classList.toggle('scrolled',window.scrollY>50)});
+    </script>
+</body>
+</html>
