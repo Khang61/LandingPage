@@ -24,7 +24,7 @@
     let scrollDelta = 0;
     let ticking = false;
     const hideThreshold = 20;
-    const showThreshold = 50;
+    const showThreshold = 100;
 
     function updateHeader() {
       const currentScrollY = window.scrollY;
