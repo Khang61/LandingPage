@@ -1774,6 +1774,15 @@ a:hover {
   margin-bottom: var(--spacing-sm);
 }
 
+.footer-brand .logo img {
+  height: 100px;
+}
+
+.footer-brand .powered-by {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .footer-brand p {
   color: rgba(255, 255, 255, 0.7);
 }

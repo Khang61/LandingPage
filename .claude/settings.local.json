@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command:*)",
+      "Bash(findstr:*)",
+      "Bash(start \"\" \"d:\\WORK\\LandingPage\\index.html\")",
+      "Bash(Get-Date -UFormat \"%y%m%d\")",
+      "Bash(node:*)",
+      "Skill(chrome-devtools)",
+      "Bash(npm install:*)",
+      "Skill(ai-multimodal)",
+      "Bash(del \"D:\\WORK\\LandingPage\\hero-fix-verify.png\")",
+      "SlashCommand(/plan:hard Redesign landing page theo style ADSDIGI (https://adsdigi.com/thiet-ke-landingpage) với các yêu cầu:\n\n## THÔNG TIN WEBSITE THAM KHẢO (ADSDIGI):\n### Layout & Sections:\n1. Hero: Banner full-width với text lớn, CTA buttons nổi bật\n2. Trust badges: Google Partner badge + thống kê (5+ năm, 500+ LP, +34% conversion)\n3. 3 Service highlight cards với icons (Design, Ownership, UI/UX)\n4. Showcase portfolio: Grid 9 projects với hover effects\n5. 6 Lý do chọn: Grid icons + text\n6. Pricing 3 tiers với cards\n7. Quy trình 5 bước timeline layout\n8. Testimonials carousel\n9. FAQ accordion pattern\n10. Footer với thông tin công ty\n\n### Design patterns:\n- Cards bo tròn với shadows\n- Hover effects mượt (ảnh di chuyển)\n- Counting animation cho số liệu\n- Carousel/sliders\n- CTA \"Tư vấn ngay\" xuất hiện thường xuyên\n- Typography phân cấp rõ ràng\n\n## LANDING PAGE HIỆN TẠI:\n- Hero với stats grid (150+ dự án, 98% hài lòng, 3 ngày)\n- Value proposition 5 items\n- Services grid 7 cards\n- Why choose us section\n- Portfolio swiper 6 items\n- Process 6 bước\n- Pricing 3 tiers\n- Testimonials swiper\n- FAQ accordion\n- Contact form\n- Client logos\n\n## YÊU CẦU:\n1. GIỮ NGUYÊN màu xanh mint (#10B981, #34D399, #059669)\n2. Áp dụng layout style ADSDIGI nhưng với brand colors hiện tại\n3. Cải thiện visual hierarchy\n4. Thêm trust signals/badges như ADSDIGI\n5. Cải thiện hover effects và animations\n6. Responsive design\n7. Tối ưu conversion với CTA buttons nổi bật hơn\n\n## FILES CẦN MODIFY:\n- index.html\n- css/styles.css\n- css/responsive.css\n- css/animations.css\n- js/main.js\n- js/animations.js)",
+      "SlashCommand(/plan:hard:*)",
+      "Skill(research)",
+      "Bash(mkdir:*)",
+      "Bash(del \"d:\\WORK\\LandingPage\\testimonials-bug.png\" \"d:\\WORK\\LandingPage\\testimonials-fixed.png\")",
+      "Bash(git --version:*)",
+      "Bash(copy \"realestate-landing.html\" \"index.html\")",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "SlashCommand(/plan:fast Tạo trang demo E-commerce Landing Page cho portfolio:\n\n## YÊU CẦU:\n1. Tạo file `portfolio/ecommerce-landing.html` - Landing page bán hàng online\n2. Cập nhật link \"Xem Demo\" trong `index.html` để trỏ đến trang mới\n\n## THAM KHẢO:\n- Style tương tự `portfolio/realestate-landing.html` và `portfolio/kuma-landing.html`\n- Single-file HTML với CSS inline (giống các demo hiện có)\n\n## NỘI DUNG TRANG E-COMMERCE:\n- Hero section: Banner sản phẩm + CTA \"Mua ngay\"\n- Trust badges: Giao hàng miễn phí, Đổi trả 30 ngày, Thanh toán an toàn\n- Featured products: Grid 4-6 sản phẩm với giá, giảm giá\n- Categories: Các danh mục sản phẩm\n- Flash sale/Countdown timer\n- Testimonials khách hàng\n- Newsletter signup\n- Footer với thông tin shop\n\n## STYLE:\n- Màu sắc: Cam/đỏ cho CTA (e-commerce style), trắng/xám cho background\n- Modern, clean design\n- Responsive\n- Animations mượt\n\n## UPDATE INDEX.HTML:\n- Tìm card demo chưa có link và update href sang `portfolio/ecommerce-landing.html`)",
+      "SlashCommand(/plan:fast:*)",
+      "Bash(git reset:*)",
+      "Bash(git checkout:*)",
+      "Bash(awk:*)",
+      "Bash(git rev-parse:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

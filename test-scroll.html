@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Scroll Navigation</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    .header { position: fixed; top: 0; left: 0; right: 0; background: #333; color: white; padding: 20px; z-index: 1000; }
+    .nav-menu { display: flex; gap: 20px; }
+    .nav-menu a { color: white; text-decoration: none; }
+    section { height: 100vh; padding: 100px 20px; }
+    #services { background: #f0f0f0; }
+    #portfolio { background: #e0e0e0; }
+    #pricing { background: #d0d0d0; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-menu">
+      <a href="#services">Dịch vụ</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#pricing">Bảng giá</a>
+    </nav>
+  </header>
+
+  <section id="hero" style="background: #fff;">
+    <h1>Hero Section</h1>
+  </section>
+
+  <section id="services">
+    <h2>Services Section</h2>
+    <p>This is the services section</p>
+  </section>
+
+  <section id="portfolio">
+    <h2>Portfolio Section</h2>
+    <p>This is the portfolio section</p>
+  </section>
+
+  <section id="pricing">
+    <h2>Pricing Section</h2>
+    <p>This is the pricing section</p>
+  </section>
+
+  <script>
+    console.log('Test script loaded');
+
+    // Same smooth scroll code from main.js
+    function initSmoothScroll() {
+      const header = document.querySelector('.header');
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        console.log('Adding listener to:', anchor.getAttribute('href'));
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          console.log('Clicked:', href);
+          if (href === '#') return;
+
+          const target = document.querySelector(href);
+          console.log('Target found:', target);
+          if (target) {
+            e.preventDefault();
+            const headerHeight = header ? header.offsetHeight : 80;
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+            console.log('Scrolling to:', targetPosition);
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSmoothScroll);
+    } else {
+      initSmoothScroll();
+    }
+  </script>
+</body>
+</html>
