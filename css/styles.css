@@ -308,7 +308,8 @@ a:hover {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 3rem;
+  margin-left: auto;
 }
 
 .nav-menu a {
