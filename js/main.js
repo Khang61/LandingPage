@@ -21,10 +21,33 @@
     if (!header) return;
 
     let lastScrollY = 0;
+    let scrollDelta = 0;
     let ticking = false;
+    const hideThreshold = 20;
 
     function updateHeader() {
       const currentScrollY = window.scrollY;
+      const scrollDiff = currentScrollY - lastScrollY;
+
+      // Accumulate scroll delta
+      scrollDelta += scrollDiff;
+
+      // Hide when scrolling down 20px
+      if (scrollDelta > hideThreshold) {
+        header.classList.add('header--hidden');
+        scrollDelta = 0;
+      }
+      // Show when scrolling up 20px
+      else if (scrollDelta < -hideThreshold) {
+        header.classList.remove('header--hidden');
+        scrollDelta = 0;
+      }
+
+      // Reset delta when at top
+      if (currentScrollY <= 0) {
+        header.classList.remove('header--hidden');
+        scrollDelta = 0;
+      }
 
       // Sticky state
       if (currentScrollY > CONFIG.headerScrollThreshold) {
