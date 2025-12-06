@@ -268,10 +268,10 @@ a:hover {
 .header .container {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 3rem;
+  justify-content: space-between;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  max-width: 1000px;
 }
 
 .logo {
@@ -308,7 +308,7 @@ a:hover {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 2rem;
 }
 
 .nav-menu a {
