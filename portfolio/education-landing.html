@@ -4,283 +4,306 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduMaster - Khóa Học Online Chất Lượng Cao</title>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
-        :root{--primary:#5C6BC0;--primary-dark:#3949AB;--primary-light:#7986CB;--accent:#7E57C2;--accent-light:#E8EAF6;--white:#FFF;--gray-50:#FAFAFA;--gray-100:#F5F5F5;--gray-200:#EEE;--gray-600:#757575;--gray-800:#424242;--gray-900:#212121;--shadow-sm:0 2px 8px rgba(0,0,0,.08);--shadow-md:0 8px 24px rgba(0,0,0,.12);--shadow-lg:0 16px 48px rgba(0,0,0,.15)}
+        :root{--primary:#6C5CE7;--primary-light:#A29BFE;--accent:#00CEC9;--dark:#2D3436;--gray:#636E72;--light:#F8F9FA;--white:#FFF}
         *{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
-        body{font-family:'Be Vietnam Pro',sans-serif;color:var(--gray-800);line-height:1.7;overflow-x:hidden;background:var(--white)}
-        @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes fadeInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes fadeInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-        header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(92,107,192,.1);transition:all .3s}
-        header.scrolled{box-shadow:var(--shadow-md)}
-        .header-container{max-width:1400px;margin:0 auto;padding:.8rem 2rem;display:flex;justify-content:space-between;align-items:center}
-        .logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
-        .logo-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:var(--shadow-sm)}
-        .logo-text{font-size:1.6rem;font-weight:800;color:var(--primary)}
-        .logo-sub{font-size:.65rem;color:var(--gray-600);letter-spacing:1px;text-transform:uppercase}
-        nav{display:flex;gap:2rem;align-items:center}
-        nav a{text-decoration:none;color:var(--gray-800);font-weight:500;font-size:.95rem;transition:color .3s}
+        body{font-family:'DM Sans',sans-serif;color:var(--dark);line-height:1.7;background:var(--white)}
+
+        /* LAYOUT 2: Minimal centered with lots of whitespace */
+        .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+        header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.98);border-bottom:1px solid rgba(0,0,0,.05)}
+        .header-inner{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 0}
+        .logo{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--dark);text-decoration:none}
+        .logo span{color:var(--primary)}
+        nav{display:flex;gap:2.5rem}
+        nav a{color:var(--gray);text-decoration:none;font-size:.95rem;font-weight:500;transition:color .3s}
         nav a:hover{color:var(--primary)}
-        .header-cta{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:.8rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s;box-shadow:0 4px 15px rgba(92,107,192,.3)}
-        .header-cta:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(92,107,192,.4)}
-        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--accent-light),var(--white) 50%,#fff);padding-top:80px}
-        .hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:150%;background:linear-gradient(135deg,rgba(126,87,194,.1),transparent 60%);border-radius:50%}
-        .hero-container{max-width:1400px;margin:0 auto;padding:4rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
-        .hero-content{animation:fadeInLeft 1s ease-out forwards}
-        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:#fff;padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;color:var(--primary);margin-bottom:1.5rem;box-shadow:var(--shadow-sm);border:1px solid var(--accent-light)}
-        .hero-title{font-size:3rem;font-weight:900;line-height:1.1;color:var(--gray-900);margin-bottom:1.5rem}
-        .hero-title .highlight{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .hero-subtitle{font-size:1.1rem;color:var(--gray-600);margin-bottom:2rem;max-width:500px}
-        .hero-stats{display:flex;gap:2.5rem;margin-bottom:2.5rem}
-        .stat-item{text-align:left}
-        .stat-number{font-size:2.5rem;font-weight:800;color:var(--primary);line-height:1}
-        .stat-label{font-size:.85rem;color:var(--gray-600);margin-top:.3rem}
-        .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
-        .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:1rem;transition:all .3s;box-shadow:0 8px 25px rgba(92,107,192,.35)}
-        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(92,107,192,.45)}
-        .btn-secondary{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--primary);padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:1rem;transition:all .3s;border:2px solid var(--primary)}
-        .btn-secondary:hover{background:var(--primary);color:#fff}
-        .hero-image{position:relative;animation:fadeInRight 1s ease-out .3s forwards;opacity:0}
-        .hero-image-main{width:100%;max-width:520px;height:500px;object-fit:cover;border-radius:24px;box-shadow:var(--shadow-lg)}
-        .hero-float-card{position:absolute;background:#fff;padding:1rem 1.2rem;border-radius:16px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:.8rem;animation:float 3s ease-in-out infinite}
-        .hero-float-card.card-1{top:10%;right:-5%;animation-delay:.5s}
-        .hero-float-card.card-2{bottom:20%;left:-5%;animation-delay:1s}
-        .float-icon{width:45px;height:45px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-        .float-text strong{display:block;font-size:.95rem;color:var(--gray-900)}
-        .float-text span{font-size:.75rem;color:var(--gray-600)}
-        .section{padding:6rem 2rem}
-        .section-header{text-align:center;margin-bottom:4rem}
-        .section-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--accent-light),#fff);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;color:var(--primary);margin-bottom:1rem;border:1px solid var(--accent-light)}
-        .section-title{font-size:2.5rem;font-weight:800;color:var(--gray-900);margin-bottom:1rem}
-        .section-subtitle{font-size:1.1rem;color:var(--gray-600);max-width:600px;margin:0 auto}
-        .courses-section{background:var(--gray-50)}
-        .courses-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-        .course-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all .3s}
-        .course-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg)}
-        .course-image{width:100%;height:180px;object-fit:cover}
+        .header-cta{background:var(--primary);color:#fff;padding:.7rem 1.8rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s}
+        .header-cta:hover{background:var(--dark);transform:translateY(-2px)}
+
+        /* Hero - Centered minimal */
+        .hero{min-height:100vh;display:flex;align-items:center;text-align:center;padding-top:100px}
+        .hero-inner{max-width:800px;margin:0 auto}
+        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--light);padding:.5rem 1.2rem;border-radius:100px;font-size:.85rem;color:var(--primary);font-weight:600;margin-bottom:2rem}
+        .hero-badge::before{content:'';width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+        .hero-title{font-family:'DM Serif Display',serif;font-size:4.5rem;line-height:1.1;margin-bottom:1.5rem;color:var(--dark)}
+        .hero-title span{color:var(--primary)}
+        .hero-desc{font-size:1.2rem;color:var(--gray);margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto}
+        .hero-btns{display:flex;justify-content:center;gap:1rem;margin-bottom:4rem}
+        .btn-primary{background:var(--primary);color:#fff;padding:1rem 2.5rem;border-radius:100px;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s}
+        .btn-primary:hover{background:var(--dark);transform:translateY(-3px);box-shadow:0 10px 30px rgba(108,92,231,.3)}
+        .btn-secondary{background:var(--light);color:var(--dark);padding:1rem 2.5rem;border-radius:100px;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s}
+        .btn-secondary:hover{background:var(--dark);color:#fff}
+        .hero-stats{display:flex;justify-content:center;gap:5rem}
+        .hero-stat{text-align:center}
+        .hero-stat-num{font-family:'DM Serif Display',serif;font-size:3rem;color:var(--primary);margin-bottom:.3rem}
+        .hero-stat-label{font-size:.9rem;color:var(--gray)}
+        .hero-image{margin-top:4rem}
+        .hero-image img{width:100%;max-width:900px;border-radius:20px;box-shadow:0 30px 60px rgba(0,0,0,.1)}
+
+        /* Section styling */
+        .section{padding:8rem 0}
+        .section-header{text-align:center;margin-bottom:5rem}
+        .section-tag{color:var(--primary);font-size:.9rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem}
+        .section-title{font-family:'DM Serif Display',serif;font-size:3rem;color:var(--dark);margin-bottom:1rem}
+        .section-desc{font-size:1.1rem;color:var(--gray);max-width:500px;margin:0 auto}
+
+        /* Courses - Card grid */
+        .courses{background:var(--light)}
+        .courses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+        .course-card{background:#fff;border-radius:20px;overflow:hidden;transition:all .3s;border:1px solid rgba(0,0,0,.05)}
+        .course-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,0,0,.1)}
+        .course-image{position:relative;overflow:hidden}
+        .course-image img{width:100%;height:200px;object-fit:cover;transition:transform .5s}
+        .course-card:hover .course-image img{transform:scale(1.1)}
+        .course-tag{position:absolute;top:1rem;left:1rem;background:var(--primary);color:#fff;padding:.3rem .8rem;border-radius:100px;font-size:.75rem;font-weight:600}
         .course-content{padding:1.5rem}
-        .course-tag{display:inline-block;background:var(--accent-light);color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:600;margin-bottom:.8rem}
-        .course-title{font-size:1.2rem;font-weight:700;color:var(--gray-900);margin-bottom:.5rem}
-        .course-desc{font-size:.9rem;color:var(--gray-600);margin-bottom:1rem}
-        .course-meta{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--gray-200)}
-        .course-price{font-size:1.2rem;font-weight:800;color:var(--primary)}
-        .course-price .old{text-decoration:line-through;color:var(--gray-600);font-size:.9rem;font-weight:400;margin-right:.5rem}
-        .course-info{font-size:.85rem;color:var(--gray-600)}
-        .features-section{background:var(--white)}
-        .features-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
-        .feature-card{text-align:center;padding:2rem}
-        .feature-icon{width:70px;height:70px;background:linear-gradient(135deg,var(--accent-light),#fff);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem;border:1px solid var(--accent-light)}
-        .feature-title{font-size:1.1rem;font-weight:700;color:var(--gray-900);margin-bottom:.5rem}
-        .feature-desc{font-size:.9rem;color:var(--gray-600)}
-        .testimonials-section{background:var(--gray-50)}
-        .testimonials-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
-        .testimonial-card{background:#fff;padding:2rem;border-radius:20px;box-shadow:var(--shadow-sm)}
-        .testimonial-text{font-size:1rem;color:var(--gray-800);font-style:italic;margin-bottom:1.5rem;line-height:1.8}
-        .testimonial-author{display:flex;align-items:center;gap:1rem}
-        .testimonial-avatar{width:50px;height:50px;border-radius:50%;object-fit:cover}
-        .testimonial-name{font-weight:700;color:var(--gray-900)}
-        .testimonial-role{font-size:.85rem;color:var(--gray-600)}
-        .cta-section{background:linear-gradient(135deg,var(--primary),var(--accent));padding:5rem 2rem;text-align:center}
-        .cta-container{max-width:800px;margin:0 auto}
-        .cta-title{font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:1rem}
-        .cta-subtitle{font-size:1.1rem;color:rgba(255,255,255,.8);margin-bottom:2rem}
-        .cta-btn{background:#fff;color:var(--primary);padding:1rem 2.5rem;border:none;border-radius:12px;font-weight:700;font-size:1.1rem;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block}
-        .cta-btn:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(0,0,0,.2)}
-        footer{background:var(--gray-900);color:#fff;padding:3rem 2rem;text-align:center}
-        .footer-logo{font-size:1.5rem;font-weight:800;margin-bottom:1rem}
-        .footer-text{color:rgba(255,255,255,.6);font-size:.9rem}
-        @media(max-width:1024px){.hero-container,.courses-grid{grid-template-columns:1fr}.features-grid{grid-template-columns:repeat(2,1fr)}.hero-title{font-size:2.5rem}.hero-image{display:none}}
-        @media(max-width:768px){.header-container{padding:.8rem 1rem}nav{display:none}.courses-grid,.features-grid,.testimonials-grid{grid-template-columns:1fr}.hero-stats{flex-wrap:wrap;gap:1.5rem}}
+        .course-title{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:.5rem}
+        .course-desc{font-size:.9rem;color:var(--gray);margin-bottom:1rem}
+        .course-meta{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--light)}
+        .course-price{font-size:1.3rem;font-weight:700;color:var(--primary)}
+        .course-price span{font-size:.9rem;font-weight:400;color:var(--gray);text-decoration:line-through;margin-right:.5rem}
+        .course-info{font-size:.85rem;color:var(--gray)}
+
+        /* Features - Alternating layout */
+        .features-list{display:flex;flex-direction:column;gap:6rem}
+        .feature-row{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+        .feature-row:nth-child(even){direction:rtl}
+        .feature-row:nth-child(even) > *{direction:ltr}
+        .feature-image img{width:100%;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.1)}
+        .feature-content{}
+        .feature-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--primary-light),var(--primary));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem}
+        .feature-title{font-family:'DM Serif Display',serif;font-size:2rem;margin-bottom:1rem}
+        .feature-desc{color:var(--gray);font-size:1.05rem;margin-bottom:1.5rem}
+        .feature-list{list-style:none}
+        .feature-list li{display:flex;align-items:center;gap:.8rem;padding:.5rem 0;color:var(--dark)}
+        .feature-list li::before{content:'✓';color:var(--accent);font-weight:700}
+
+        /* Testimonials - Single featured */
+        .testimonials{background:var(--dark);color:#fff}
+        .testimonial-featured{max-width:800px;margin:0 auto;text-align:center}
+        .testimonial-quote{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1.5;margin-bottom:3rem}
+        .testimonial-author{display:flex;align-items:center;justify-content:center;gap:1.5rem}
+        .testimonial-avatar{width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid var(--primary)}
+        .testimonial-info h4{font-size:1.1rem;margin-bottom:.3rem}
+        .testimonial-info p{color:var(--gray);font-size:.9rem}
+        .testimonial-nav{display:flex;justify-content:center;gap:1rem;margin-top:3rem}
+        .testimonial-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s}
+        .testimonial-dot.active{background:var(--primary);transform:scale(1.2)}
+
+        /* CTA - Clean minimal */
+        .cta{text-align:center}
+        .cta-inner{background:linear-gradient(135deg,var(--primary),var(--primary-light));padding:5rem;border-radius:30px;color:#fff}
+        .cta h2{font-family:'DM Serif Display',serif;font-size:3rem;margin-bottom:1rem}
+        .cta p{font-size:1.2rem;opacity:.9;margin-bottom:2rem}
+        .cta .btn-primary{background:#fff;color:var(--primary)}
+        .cta .btn-primary:hover{background:var(--dark);color:#fff}
+
+        footer{padding:4rem 0;text-align:center;border-top:1px solid var(--light)}
+        .footer-logo{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:1rem}
+        .footer-logo span{color:var(--primary)}
+        .footer-text{color:var(--gray);font-size:.9rem}
+
+        @media(max-width:1024px){
+            .hero-title{font-size:3rem}
+            .courses-grid{grid-template-columns:1fr 1fr}
+            .feature-row{grid-template-columns:1fr;gap:3rem}
+            .feature-row:nth-child(even){direction:ltr}
+        }
+        @media(max-width:768px){
+            nav{display:none}
+            .hero-title{font-size:2.5rem}
+            .hero-stats{flex-wrap:wrap;gap:2rem}
+            .courses-grid{grid-template-columns:1fr}
+            .cta-inner{padding:3rem 2rem}
+            .cta h2{font-size:2rem}
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">📚</div>
-                <div>
-                    <div class="logo-text">EduMaster</div>
-                    <div class="logo-sub">Learn. Grow. Succeed</div>
-                </div>
-            </a>
-            <nav>
-                <a href="#courses">Khóa Học</a>
-                <a href="#features">Tính Năng</a>
-                <a href="#testimonials">Đánh Giá</a>
-                <a href="#contact">Liên Hệ</a>
-            </nav>
-            <a href="#contact" class="header-cta">Học Thử Miễn Phí</a>
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">Edu<span>Master</span></a>
+                <nav>
+                    <a href="#courses">Khóa Học</a>
+                    <a href="#features">Tính Năng</a>
+                    <a href="#testimonials">Đánh Giá</a>
+                </nav>
+                <a href="#cta" class="header-cta">Học Thử Miễn Phí</a>
+            </div>
         </div>
     </header>
 
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">🎓 Nền tảng học online #1 Việt Nam</div>
-                <h1 class="hero-title">Học Mọi Lúc<br><span class="highlight">Mọi Nơi</span></h1>
-                <p class="hero-subtitle">Khám phá hàng trăm khóa học chất lượng cao từ các chuyên gia hàng đầu. Học theo tốc độ của bạn, nhận chứng chỉ uy tín.</p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">50K+</div>
-                        <div class="stat-label">Học viên</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">Khóa học</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4.9⭐</div>
-                        <div class="stat-label">Đánh giá</div>
-                    </div>
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-badge">Nền tảng #1 Việt Nam</div>
+                <h1 class="hero-title">Học Mọi Thứ,<br><span>Mọi Lúc, Mọi Nơi</span></h1>
+                <p class="hero-desc">Khám phá hàng trăm khóa học từ các chuyên gia hàng đầu. Học theo tốc độ của bạn, nhận chứng chỉ uy tín.</p>
+                <div class="hero-btns">
+                    <a href="#courses" class="btn-primary">Khám Phá Khóa Học →</a>
+                    <a href="#features" class="btn-secondary">▶ Xem Giới Thiệu</a>
                 </div>
-                <div class="hero-buttons">
-                    <a href="#courses" class="btn-primary">🚀 Khám Phá Khóa Học</a>
-                    <a href="#features" class="btn-secondary">Tìm Hiểu Thêm</a>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">50K+</div>
+                        <div class="hero-stat-label">Học viên</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">200+</div>
+                        <div class="hero-stat-label">Khóa học</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">4.9★</div>
+                        <div class="hero-stat-label">Đánh giá</div>
+                    </div>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=550&fit=crop" alt="Online Learning" class="hero-image-main">
-                <div class="hero-float-card card-1">
-                    <div class="float-icon">🏆</div>
-                    <div class="float-text">
-                        <strong>Chứng Chỉ Quốc Tế</strong>
-                        <span>Được công nhận toàn cầu</span>
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop" alt="Learning">
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="section courses">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Khóa Học Nổi Bật</div>
+                <h2 class="section-title">Được Yêu Thích Nhất</h2>
+                <p class="section-desc">Lựa chọn từ hàng trăm khóa học chất lượng cao</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop" alt="Course">
+                        <span class="course-tag">Bestseller</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Lập Trình Web Full-Stack</h3>
+                        <p class="course-desc">Từ zero đến hero với React, Node.js và MongoDB</p>
+                        <div class="course-meta">
+                            <span class="course-price"><span>3.500.000đ</span>1.990.000đ</span>
+                            <span class="course-info">40 giờ</span>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-float-card card-2">
-                    <div class="float-icon">💯</div>
-                    <div class="float-text">
-                        <strong>Cam Kết Chất Lượng</strong>
-                        <span>Hoàn tiền 100% nếu không hài lòng</span>
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop" alt="Course">
+                        <span class="course-tag">Hot</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Digital Marketing A-Z</h3>
+                        <p class="course-desc">SEO, Google Ads, Facebook Ads từ cơ bản đến nâng cao</p>
+                        <div class="course-meta">
+                            <span class="course-price"><span>2.500.000đ</span>1.490.000đ</span>
+                            <span class="course-info">30 giờ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop" alt="Course">
+                        <span class="course-tag">Mới</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Data Science & AI</h3>
+                        <p class="course-desc">Python, Machine Learning cho người mới bắt đầu</p>
+                        <div class="course-meta">
+                            <span class="course-price"><span>4.000.000đ</span>2.490.000đ</span>
+                            <span class="course-info">50 giờ</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="courses" class="section courses-section">
-        <div class="section-header">
-            <div class="section-badge">📖 Khóa Học Nổi Bật</div>
-            <h2 class="section-title">Khóa Học Được Yêu Thích Nhất</h2>
-            <p class="section-subtitle">Lựa chọn từ hàng trăm khóa học chất lượng cao</p>
-        </div>
-        <div class="courses-grid">
-            <div class="course-card">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=220&fit=crop" alt="Web Development" class="course-image">
-                <div class="course-content">
-                    <span class="course-tag">Bestseller</span>
-                    <h3 class="course-title">Lập Trình Web Full-Stack</h3>
-                    <p class="course-desc">Từ zero đến hero với HTML, CSS, JavaScript, React và Node.js</p>
-                    <div class="course-meta">
-                        <span class="course-price"><span class="old">3.500.000đ</span>1.990.000đ</span>
-                        <span class="course-info">40 giờ học</span>
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Tại Sao Chọn Chúng Tôi</div>
+                <h2 class="section-title">Trải Nghiệm Học Tuyệt Vời</h2>
+            </div>
+            <div class="features-list">
+                <div class="feature-row">
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop" alt="Feature">
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-icon">🎥</div>
+                        <h3 class="feature-title">Video Chất Lượng HD</h3>
+                        <p class="feature-desc">Bài giảng được quay với chất lượng cao, hình ảnh sắc nét, âm thanh rõ ràng.</p>
+                        <ul class="feature-list">
+                            <li>Độ phân giải 1080p</li>
+                            <li>Phụ đề tiếng Việt</li>
+                            <li>Tải về xem offline</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div class="course-card">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=220&fit=crop" alt="Digital Marketing" class="course-image">
-                <div class="course-content">
-                    <span class="course-tag">Hot</span>
-                    <h3 class="course-title">Digital Marketing A-Z</h3>
-                    <p class="course-desc">SEO, Google Ads, Facebook Ads, Content Marketing từ cơ bản đến nâng cao</p>
-                    <div class="course-meta">
-                        <span class="course-price"><span class="old">2.500.000đ</span>1.490.000đ</span>
-                        <span class="course-info">30 giờ học</span>
+                <div class="feature-row">
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1531498860502-7c67cf02f657?w=600&h=400&fit=crop" alt="Feature">
                     </div>
-                </div>
-            </div>
-            <div class="course-card">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=220&fit=crop" alt="Data Science" class="course-image">
-                <div class="course-content">
-                    <span class="course-tag">Mới</span>
-                    <h3 class="course-title">Data Science & AI</h3>
-                    <p class="course-desc">Python, Machine Learning, Deep Learning cho người mới bắt đầu</p>
-                    <div class="course-meta">
-                        <span class="course-price"><span class="old">4.000.000đ</span>2.490.000đ</span>
-                        <span class="course-info">50 giờ học</span>
+                    <div class="feature-content">
+                        <div class="feature-icon">👨‍🏫</div>
+                        <h3 class="feature-title">Mentor Tận Tâm</h3>
+                        <p class="feature-desc">Được hỗ trợ trực tiếp từ giảng viên, giải đáp mọi thắc mắc 24/7.</p>
+                        <ul class="feature-list">
+                            <li>Hỗ trợ 1-1</li>
+                            <li>Review code/bài tập</li>
+                            <li>Cộng đồng học viên</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="section features-section">
-        <div class="section-header">
-            <div class="section-badge">✨ Tại Sao Chọn Chúng Tôi</div>
-            <h2 class="section-title">Trải Nghiệm Học Tập Tuyệt Vời</h2>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🎥</div>
-                <h3 class="feature-title">Video HD Chất Lượng</h3>
-                <p class="feature-desc">Bài giảng được quay chuyên nghiệp, hình ảnh sắc nét</p>
+    <section id="testimonials" class="section testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag" style="color:var(--primary-light)">Đánh Giá</div>
+                <h2 class="section-title" style="color:#fff">Học Viên Nói Gì</h2>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3 class="feature-title">Học Mọi Thiết Bị</h3>
-                <p class="feature-desc">Truy cập trên điện thoại, máy tính bảng, laptop</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👨‍🏫</div>
-                <h3 class="feature-title">Mentor 1-1</h3>
-                <p class="feature-desc">Được hỗ trợ trực tiếp từ giảng viên</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🏆</div>
-                <h3 class="feature-title">Chứng Chỉ Uy Tín</h3>
-                <p class="feature-desc">Nhận chứng chỉ sau khi hoàn thành khóa học</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="section testimonials-section">
-        <div class="section-header">
-            <div class="section-badge">💬 Học Viên Nói Gì</div>
-            <h2 class="section-title">Đánh Giá Từ Học Viên</h2>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p class="testimonial-text">"Khóa học rất chi tiết và dễ hiểu. Sau 3 tháng học, tôi đã tự tin apply vào vị trí Junior Developer và được nhận ngay!"</p>
+            <div class="testimonial-featured">
+                <p class="testimonial-quote">"Khóa học rất chi tiết và dễ hiểu. Sau 3 tháng học, tôi đã tự tin apply vào vị trí Junior Developer và được nhận ngay!"</p>
                 <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Student" class="testimonial-avatar">
-                    <div>
-                        <div class="testimonial-name">Nguyễn Văn An</div>
-                        <div class="testimonial-role">Web Developer tại FPT</div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Avatar" class="testimonial-avatar">
+                    <div class="testimonial-info">
+                        <h4>Nguyễn Văn An</h4>
+                        <p>Web Developer tại FPT</p>
                     </div>
                 </div>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"Giảng viên rất nhiệt tình, hỗ trợ nhanh chóng. Nội dung cập nhật theo xu hướng mới nhất. Đáng đồng tiền bát gạo!"</p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Student" class="testimonial-avatar">
-                    <div>
-                        <div class="testimonial-name">Trần Thị Hương</div>
-                        <div class="testimonial-role">Marketing Manager tại Shopee</div>
-                    </div>
+                <div class="testimonial-nav">
+                    <span class="testimonial-dot active"></span>
+                    <span class="testimonial-dot"></span>
+                    <span class="testimonial-dot"></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="cta-section">
-        <div class="cta-container">
-            <h2 class="cta-title">Bắt Đầu Học Ngay Hôm Nay</h2>
-            <p class="cta-subtitle">Đăng ký để nhận 7 ngày học thử miễn phí và ưu đãi giảm 40%</p>
-            <a href="#" class="cta-btn">Đăng Ký Học Thử Miễn Phí</a>
+    <section id="cta" class="section cta">
+        <div class="container">
+            <div class="cta-inner">
+                <h2>Bắt Đầu Học Ngay Hôm Nay</h2>
+                <p>Đăng ký để nhận 7 ngày học thử miễn phí</p>
+                <a href="#" class="btn-primary">Học Thử Miễn Phí →</a>
+            </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo">📚 EduMaster</div>
-        <p class="footer-text">© 2024 EduMaster. Thiết kế bởi Chí Vĩ - VHITEK</p>
+        <div class="container">
+            <div class="footer-logo">Edu<span>Master</span></div>
+            <p class="footer-text">© 2024 EduMaster. Thiết kế bởi Chí Vĩ - VHITEK</p>
+        </div>
     </footer>
-
-    <script>
-        window.addEventListener('scroll',()=>{document.querySelector('header').classList.toggle('scrolled',window.scrollY>50)});
-    </script>
 </body>
 </html>

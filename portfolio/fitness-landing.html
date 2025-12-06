@@ -4,256 +4,301 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitLife - Phòng Tập & Personal Training</title>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root{--primary:#E53935;--primary-dark:#C62828;--primary-light:#EF5350;--accent:#FF7043;--accent-light:#FFCCBC;--white:#FFF;--gray-50:#FAFAFA;--gray-100:#F5F5F5;--gray-200:#EEE;--gray-600:#757575;--gray-800:#424242;--gray-900:#212121;--shadow-sm:0 2px 8px rgba(0,0,0,.08);--shadow-md:0 8px 24px rgba(0,0,0,.12);--shadow-lg:0 16px 48px rgba(0,0,0,.15)}
+        :root{--primary:#FF4136;--primary-dark:#E7261B;--accent:#FFD700;--dark:#0D0D0D;--darker:#000;--light:#F5F5F5;--gray:#888}
         *{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
-        body{font-family:'Be Vietnam Pro',sans-serif;color:var(--gray-800);line-height:1.7;overflow-x:hidden;background:var(--white)}
-        @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes fadeInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes fadeInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-        header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(229,57,53,.1);transition:all .3s}
-        header.scrolled{box-shadow:var(--shadow-md)}
-        .header-container{max-width:1400px;margin:0 auto;padding:.8rem 2rem;display:flex;justify-content:space-between;align-items:center}
-        .logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
-        .logo-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:var(--shadow-sm)}
-        .logo-text{font-size:1.6rem;font-weight:800;color:var(--primary)}
-        .logo-sub{font-size:.65rem;color:var(--gray-600);letter-spacing:1px;text-transform:uppercase}
-        nav{display:flex;gap:2rem;align-items:center}
-        nav a{text-decoration:none;color:var(--gray-800);font-weight:500;font-size:.95rem;transition:color .3s}
-        nav a:hover{color:var(--primary)}
-        .header-cta{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:.8rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s;box-shadow:0 4px 15px rgba(229,57,53,.3)}
-        .header-cta:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(229,57,53,.4)}
-        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--gray-900),#1a1a1a);padding-top:80px}
-        .hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:150%;background:linear-gradient(135deg,rgba(229,57,53,.3),transparent 60%);border-radius:50%;opacity:.5}
-        .hero-container{max-width:1400px;margin:0 auto;padding:4rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
-        .hero-content{animation:fadeInLeft 1s ease-out forwards}
-        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;color:var(--accent);margin-bottom:1.5rem;border:1px solid rgba(255,112,67,.3)}
-        .hero-title{font-size:3.2rem;font-weight:900;line-height:1.1;color:#fff;margin-bottom:1.5rem}
-        .hero-title .highlight{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .hero-subtitle{font-size:1.1rem;color:rgba(255,255,255,.7);margin-bottom:2rem;max-width:500px}
-        .hero-stats{display:flex;gap:2.5rem;margin-bottom:2.5rem}
-        .stat-item{text-align:left}
-        .stat-number{font-size:2.5rem;font-weight:800;color:var(--primary);line-height:1}
-        .stat-label{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:.3rem}
-        .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
-        .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:1rem;transition:all .3s;box-shadow:0 8px 25px rgba(229,57,53,.35)}
-        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(229,57,53,.45)}
-        .btn-secondary{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:#fff;padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:1rem;transition:all .3s;border:2px solid rgba(255,255,255,.3)}
-        .btn-secondary:hover{background:rgba(255,255,255,.1);border-color:var(--primary)}
-        .hero-image{position:relative;animation:fadeInRight 1s ease-out .3s forwards;opacity:0}
-        .hero-image-main{width:100%;max-width:520px;height:620px;object-fit:cover;border-radius:24px;box-shadow:var(--shadow-lg)}
-        .hero-float-card{position:absolute;background:#fff;padding:1rem 1.2rem;border-radius:16px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:.8rem;animation:float 3s ease-in-out infinite}
-        .hero-float-card.card-1{top:10%;right:-5%;animation-delay:.5s}
-        .hero-float-card.card-2{bottom:25%;left:-5%;animation-delay:1s}
-        .float-icon{width:45px;height:45px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-        .float-text strong{display:block;font-size:.95rem;color:var(--gray-900)}
-        .float-text span{font-size:.75rem;color:var(--gray-600)}
-        .section{padding:6rem 2rem}
-        .section-header{text-align:center;margin-bottom:4rem}
-        .section-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--accent-light),#fff);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;color:var(--primary);margin-bottom:1rem;border:1px solid var(--accent-light)}
-        .section-title{font-size:2.5rem;font-weight:800;color:var(--gray-900);margin-bottom:1rem}
-        .section-subtitle{font-size:1.1rem;color:var(--gray-600);max-width:600px;margin:0 auto}
-        .programs-section{background:var(--gray-50)}
-        .programs-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-        .program-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all .3s}
-        .program-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg)}
-        .program-image{width:100%;height:200px;object-fit:cover}
-        .program-content{padding:1.5rem}
-        .program-tag{display:inline-block;background:var(--accent-light);color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:600;margin-bottom:.8rem}
-        .program-title{font-size:1.3rem;font-weight:700;color:var(--gray-900);margin-bottom:.5rem}
-        .program-desc{font-size:.9rem;color:var(--gray-600);margin-bottom:1rem}
-        .program-meta{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--gray-200)}
-        .program-price{font-size:1.2rem;font-weight:800;color:var(--primary)}
-        .program-duration{font-size:.85rem;color:var(--gray-600)}
-        .trainers-section{background:var(--white)}
-        .trainers-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
-        .trainer-card{text-align:center}
-        .trainer-image{width:180px;height:180px;border-radius:50%;object-fit:cover;margin:0 auto 1rem;border:4px solid var(--accent-light)}
-        .trainer-name{font-size:1.1rem;font-weight:700;color:var(--gray-900)}
-        .trainer-role{font-size:.9rem;color:var(--primary);margin-bottom:.5rem}
-        .trainer-exp{font-size:.85rem;color:var(--gray-600)}
-        .cta-section{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:5rem 2rem;text-align:center}
-        .cta-container{max-width:800px;margin:0 auto}
-        .cta-title{font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:1rem}
-        .cta-subtitle{font-size:1.1rem;color:rgba(255,255,255,.8);margin-bottom:2rem}
-        .cta-form{display:flex;gap:1rem;max-width:500px;margin:0 auto}
-        .cta-input{flex:1;padding:1rem 1.5rem;border:none;border-radius:12px;font-size:1rem;font-family:inherit}
-        .cta-btn{background:#fff;color:var(--primary);padding:1rem 2rem;border:none;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;transition:all .3s}
-        .cta-btn:hover{transform:scale(1.05)}
-        footer{background:var(--gray-900);color:#fff;padding:3rem 2rem;text-align:center}
-        .footer-logo{font-size:1.5rem;font-weight:800;margin-bottom:1rem}
-        .footer-text{color:rgba(255,255,255,.6);font-size:.9rem}
-        @media(max-width:1024px){.hero-container,.programs-grid{grid-template-columns:1fr}.trainers-grid{grid-template-columns:repeat(2,1fr)}.hero-title{font-size:2.5rem}.hero-image{display:none}}
-        @media(max-width:768px){.header-container{padding:.8rem 1rem}nav{display:none}.programs-grid,.trainers-grid{grid-template-columns:1fr}.cta-form{flex-direction:column}.hero-stats{flex-wrap:wrap;gap:1.5rem}}
+        body{font-family:'Inter',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
+
+        /* LAYOUT 1: Full-width immersive with diagonal cuts */
+        header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;transition:all .3s}
+        header.scrolled{background:rgba(0,0,0,.9);backdrop-filter:blur(10px)}
+        .logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:#fff;text-decoration:none;letter-spacing:2px}
+        .logo span{color:var(--primary)}
+        nav{display:flex;gap:3rem}
+        nav a{color:#fff;text-decoration:none;font-size:.9rem;text-transform:uppercase;letter-spacing:1px;opacity:.7;transition:opacity .3s}
+        nav a:hover{opacity:1}
+        .header-cta{background:var(--primary);color:#fff;padding:.8rem 2rem;text-decoration:none;font-weight:600;text-transform:uppercase;letter-spacing:1px;clip-path:polygon(10% 0,100% 0,90% 100%,0 100%);transition:all .3s}
+        .header-cta:hover{background:var(--accent);color:var(--dark)}
+
+        /* Hero with diagonal overlay */
+        .hero{height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+        .hero-bg{position:absolute;inset:0}
+        .hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.4)}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.8) 0%,transparent 60%)}
+        .hero-diagonal{position:absolute;bottom:0;left:0;right:0;height:200px;background:var(--dark);clip-path:polygon(0 100%,100% 0,100% 100%)}
+        .hero-content{position:relative;z-index:1;padding:0 4rem;max-width:800px}
+        .hero-tag{display:inline-block;background:var(--primary);padding:.5rem 1.5rem;font-size:.8rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:2rem;clip-path:polygon(5% 0,100% 0,95% 100%,0 100%)}
+        .hero-title{font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:.9;margin-bottom:1.5rem;text-transform:uppercase}
+        .hero-title span{color:var(--primary)}
+        .hero-desc{font-size:1.1rem;color:var(--gray);margin-bottom:2.5rem;max-width:500px}
+        .hero-stats{display:flex;gap:4rem;margin-bottom:3rem}
+        .stat{border-left:3px solid var(--primary);padding-left:1.5rem}
+        .stat-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--primary)}
+        .stat-label{font-size:.85rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px}
+        .hero-btns{display:flex;gap:1.5rem}
+        .btn-main{background:var(--primary);color:#fff;padding:1.2rem 3rem;text-decoration:none;font-weight:600;text-transform:uppercase;letter-spacing:1px;display:inline-flex;align-items:center;gap:.8rem;clip-path:polygon(5% 0,100% 0,95% 100%,0 100%);transition:all .3s}
+        .btn-main:hover{background:var(--accent);color:var(--dark)}
+        .btn-outline{border:2px solid #fff;color:#fff;padding:1.2rem 3rem;text-decoration:none;font-weight:600;text-transform:uppercase;letter-spacing:1px;transition:all .3s}
+        .btn-outline:hover{background:#fff;color:var(--dark)}
+
+        /* Horizontal scroll section */
+        .programs{padding:8rem 0;overflow:hidden}
+        .section-header{padding:0 4rem;margin-bottom:4rem}
+        .section-tag{color:var(--primary);font-size:.9rem;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem}
+        .section-title{font-family:'Bebas Neue',sans-serif;font-size:4rem;text-transform:uppercase}
+        .programs-scroll{display:flex;gap:2rem;padding:0 4rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+        .programs-scroll::-webkit-scrollbar{display:none}
+        .program-card{min-width:400px;scroll-snap-align:start;position:relative;overflow:hidden;group}
+        .program-card img{width:100%;height:500px;object-fit:cover;transition:transform .5s}
+        .program-card:hover img{transform:scale(1.1)}
+        .program-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 0%,transparent 50%);padding:2rem;display:flex;flex-direction:column;justify-content:flex-end}
+        .program-tag{background:var(--primary);color:#fff;padding:.3rem .8rem;font-size:.75rem;text-transform:uppercase;display:inline-block;margin-bottom:1rem;width:fit-content}
+        .program-name{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.5rem}
+        .program-desc{color:var(--gray);font-size:.9rem;margin-bottom:1rem}
+        .program-price{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--accent)}
+
+        /* Split content section */
+        .about{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+        .about-image{position:relative;overflow:hidden}
+        .about-image img{width:100%;height:100%;object-fit:cover}
+        .about-image::after{content:'';position:absolute;top:0;right:0;width:100px;height:100%;background:var(--dark);clip-path:polygon(100% 0,100% 100%,0 100%)}
+        .about-content{background:var(--dark);padding:6rem;display:flex;flex-direction:column;justify-content:center}
+        .about-content .section-tag{margin-bottom:1.5rem}
+        .about-content .section-title{margin-bottom:2rem}
+        .about-text{color:var(--gray);font-size:1.1rem;line-height:1.8;margin-bottom:3rem}
+        .features-list{display:flex;flex-direction:column;gap:1.5rem}
+        .feature-item{display:flex;align-items:center;gap:1.5rem}
+        .feature-icon{width:60px;height:60px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.5rem;clip-path:polygon(25% 0,100% 0,75% 100%,0 100%)}
+        .feature-text h4{font-size:1.1rem;margin-bottom:.3rem}
+        .feature-text p{color:var(--gray);font-size:.9rem}
+
+        /* Trainers - card grid with hover */
+        .trainers{padding:8rem 4rem;background:linear-gradient(180deg,var(--dark) 0%,#1a1a1a 100%)}
+        .trainers .section-header{padding:0;text-align:center}
+        .trainers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem}
+        .trainer-card{position:relative;overflow:hidden;aspect-ratio:3/4}
+        .trainer-card img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%);transition:all .5s}
+        .trainer-card:hover img{filter:grayscale(0);transform:scale(1.05)}
+        .trainer-info{position:absolute;bottom:0;left:0;right:0;padding:2rem;background:linear-gradient(to top,rgba(0,0,0,.9),transparent);transform:translateY(50px);transition:transform .3s}
+        .trainer-card:hover .trainer-info{transform:translateY(0)}
+        .trainer-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem}
+        .trainer-role{color:var(--primary);font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
+
+        /* CTA with angled background */
+        .cta{position:relative;padding:10rem 4rem;text-align:center;overflow:hidden}
+        .cta-bg{position:absolute;inset:0;background:var(--primary);clip-path:polygon(0 15%,100% 0,100% 85%,0 100%)}
+        .cta-content{position:relative;z-index:1}
+        .cta h2{font-family:'Bebas Neue',sans-serif;font-size:5rem;text-transform:uppercase;margin-bottom:1.5rem}
+        .cta p{font-size:1.2rem;margin-bottom:3rem;opacity:.9}
+        .cta .btn-main{background:var(--dark);color:#fff}
+        .cta .btn-main:hover{background:#fff;color:var(--dark)}
+
+        footer{background:var(--darker);padding:4rem;text-align:center}
+        .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:1rem}
+        .footer-logo span{color:var(--primary)}
+        .footer-text{color:var(--gray);font-size:.9rem}
+
+        @media(max-width:1024px){
+            .hero-title{font-size:4rem}
+            .about{grid-template-columns:1fr}
+            .about-image{height:50vh}
+            .trainers-grid{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:768px){
+            header{padding:1rem 2rem}
+            nav{display:none}
+            .hero-content{padding:0 2rem}
+            .hero-title{font-size:3rem}
+            .hero-stats{flex-wrap:wrap;gap:2rem}
+            .section-header{padding:0 2rem}
+            .programs-scroll{padding:0 2rem}
+            .program-card{min-width:300px}
+            .about-content{padding:3rem 2rem}
+            .trainers{padding:4rem 2rem}
+            .trainers-grid{grid-template-columns:1fr}
+            .cta{padding:6rem 2rem}
+            .cta h2{font-size:3rem}
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">💪</div>
-                <div>
-                    <div class="logo-text">FitLife</div>
-                    <div class="logo-sub">Transform Your Body</div>
-                </div>
-            </a>
-            <nav>
-                <a href="#programs">Chương Trình</a>
-                <a href="#trainers">Huấn Luyện Viên</a>
-                <a href="#pricing">Bảng Giá</a>
-                <a href="#contact">Liên Hệ</a>
-            </nav>
-            <a href="#contact" class="header-cta">Đăng Ký Ngay</a>
-        </div>
+        <a href="#" class="logo">FIT<span>LIFE</span></a>
+        <nav>
+            <a href="#programs">Chương Trình</a>
+            <a href="#about">Về Chúng Tôi</a>
+            <a href="#trainers">Huấn Luyện Viên</a>
+        </nav>
+        <a href="#cta" class="header-cta">Đăng Ký Ngay</a>
     </header>
 
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">🔥 Ưu đãi 50% tháng đầu tiên</div>
-                <h1 class="hero-title">Thay Đổi <span class="highlight">Vóc Dáng</span><br>Thay Đổi Cuộc Sống</h1>
-                <p class="hero-subtitle">Hệ thống phòng tập hiện đại cùng đội ngũ PT chuyên nghiệp. Cam kết giúp bạn đạt được mục tiêu sức khỏe chỉ trong 90 ngày.</p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Học viên đã thay đổi</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">Huấn luyện viên</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Hài lòng</div>
-                    </div>
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&h=1080&fit=crop" alt="Gym">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-diagonal"></div>
+        <div class="hero-content">
+            <div class="hero-tag">🔥 Ưu đãi 50% tháng đầu</div>
+            <h1 class="hero-title">Unlock Your <span>Power</span></h1>
+            <p class="hero-desc">Hệ thống phòng tập hiện đại với đội ngũ PT chuyên nghiệp. Cam kết giúp bạn đạt được body goals trong 90 ngày.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-num">500+</div>
+                    <div class="stat-label">Học viên</div>
                 </div>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">🎯 Đăng Ký Tập Thử Miễn Phí</a>
-                    <a href="#programs" class="btn-secondary">Xem Chương Trình</a>
+                <div class="stat">
+                    <div class="stat-num">15</div>
+                    <div class="stat-label">Huấn luyện viên</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">98%</div>
+                    <div class="stat-label">Hài lòng</div>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=700&fit=crop" alt="Fitness Training" class="hero-image-main">
-                <div class="hero-float-card card-1">
-                    <div class="float-icon">🏋️</div>
-                    <div class="float-text">
-                        <strong>200+ Thiết bị</strong>
-                        <span>Hiện đại, đầy đủ</span>
-                    </div>
-                </div>
-                <div class="hero-float-card card-2">
-                    <div class="float-icon">⭐</div>
-                    <div class="float-text">
-                        <strong>4.9/5 Đánh giá</strong>
-                        <span>Từ 500+ học viên</span>
-                    </div>
-                </div>
+            <div class="hero-btns">
+                <a href="#cta" class="btn-main">Tập Thử Miễn Phí →</a>
+                <a href="#programs" class="btn-outline">Xem Chương Trình</a>
             </div>
         </div>
     </section>
 
-    <section id="programs" class="section programs-section">
+    <section id="programs" class="programs">
         <div class="section-header">
-            <div class="section-badge">💪 Chương Trình Tập Luyện</div>
-            <h2 class="section-title">Lựa Chọn Phù Hợp Với Bạn</h2>
-            <p class="section-subtitle">Đa dạng chương trình từ cơ bản đến nâng cao, phù hợp mọi mục tiêu</p>
+            <div class="section-tag">// Chương Trình</div>
+            <h2 class="section-title">Lựa Chọn Của Bạn</h2>
         </div>
-        <div class="programs-grid">
+        <div class="programs-scroll">
             <div class="program-card">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=250&fit=crop" alt="Weight Loss" class="program-image">
-                <div class="program-content">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=600&fit=crop" alt="Weight Loss">
+                <div class="program-overlay">
                     <span class="program-tag">Phổ biến</span>
-                    <h3 class="program-title">Giảm Cân Hiệu Quả</h3>
-                    <p class="program-desc">Chương trình kết hợp cardio và strength training, giúp đốt mỡ tối ưu.</p>
-                    <div class="program-meta">
-                        <span class="program-price">1.500.000đ/tháng</span>
-                        <span class="program-duration">12 buổi/tháng</span>
-                    </div>
+                    <h3 class="program-name">Giảm Cân Hiệu Quả</h3>
+                    <p class="program-desc">Cardio + Strength training kết hợp</p>
+                    <div class="program-price">1.500.000đ/tháng</div>
                 </div>
             </div>
             <div class="program-card">
-                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c149a?w=400&h=250&fit=crop" alt="Muscle Building" class="program-image">
-                <div class="program-content">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c149a?w=500&h=600&fit=crop" alt="Muscle">
+                <div class="program-overlay">
                     <span class="program-tag">Premium</span>
-                    <h3 class="program-title">Tăng Cơ Bắp</h3>
-                    <p class="program-desc">Lộ trình tập nặng chuyên nghiệp, kết hợp chế độ dinh dưỡng khoa học.</p>
-                    <div class="program-meta">
-                        <span class="program-price">2.500.000đ/tháng</span>
-                        <span class="program-duration">16 buổi/tháng</span>
-                    </div>
+                    <h3 class="program-name">Tăng Cơ Bắp</h3>
+                    <p class="program-desc">Lộ trình tập nặng chuyên nghiệp</p>
+                    <div class="program-price">2.500.000đ/tháng</div>
                 </div>
             </div>
             <div class="program-card">
-                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=250&fit=crop" alt="Yoga" class="program-image">
-                <div class="program-content">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=500&h=600&fit=crop" alt="Yoga">
+                <div class="program-overlay">
                     <span class="program-tag">Mới</span>
-                    <h3 class="program-title">Yoga & Flexibility</h3>
-                    <p class="program-desc">Cải thiện sự dẻo dai, giảm stress và nâng cao sức khỏe tinh thần.</p>
-                    <div class="program-meta">
-                        <span class="program-price">1.200.000đ/tháng</span>
-                        <span class="program-duration">8 buổi/tháng</span>
+                    <h3 class="program-name">Yoga & Flexibility</h3>
+                    <p class="program-desc">Cải thiện sự dẻo dai</p>
+                    <div class="program-price">1.200.000đ/tháng</div>
+                </div>
+            </div>
+            <div class="program-card">
+                <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=500&h=600&fit=crop" alt="Boxing">
+                <div class="program-overlay">
+                    <span class="program-tag">Hot</span>
+                    <h3 class="program-name">Boxing & MMA</h3>
+                    <p class="program-desc">Học võ + Giảm mỡ</p>
+                    <div class="program-price">2.000.000đ/tháng</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=1000&fit=crop" alt="Training">
+        </div>
+        <div class="about-content">
+            <div class="section-tag">// Về Chúng Tôi</div>
+            <h2 class="section-title">Không Chỉ Là Phòng Tập</h2>
+            <p class="about-text">Chúng tôi không chỉ cung cấp thiết bị tập luyện. Chúng tôi mang đến một cộng đồng, một gia đình fitness nơi mọi người cùng nhau phát triển.</p>
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">🏋️</div>
+                    <div class="feature-text">
+                        <h4>200+ Thiết Bị Hiện Đại</h4>
+                        <p>Từ các thương hiệu hàng đầu thế giới</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <div class="feature-text">
+                        <h4>PT Chứng Nhận Quốc Tế</h4>
+                        <p>Đội ngũ được đào tạo bài bản</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🥗</div>
+                    <div class="feature-text">
+                        <h4>Tư Vấn Dinh Dưỡng</h4>
+                        <p>Chế độ ăn khoa học theo mục tiêu</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="trainers" class="section trainers-section">
+    <section id="trainers" class="trainers">
         <div class="section-header">
-            <div class="section-badge">👨‍🏫 Đội Ngũ Chuyên Nghiệp</div>
-            <h2 class="section-title">Huấn Luyện Viên Hàng Đầu</h2>
-            <p class="section-subtitle">Đội ngũ PT được chứng nhận quốc tế, giàu kinh nghiệm</p>
+            <div class="section-tag">// Đội Ngũ</div>
+            <h2 class="section-title">Huấn Luyện Viên Elite</h2>
         </div>
         <div class="trainers-grid">
             <div class="trainer-card">
-                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=200&h=200&fit=crop" alt="Trainer" class="trainer-image">
-                <h3 class="trainer-name">Nguyễn Văn Minh</h3>
-                <p class="trainer-role">Head Coach</p>
-                <p class="trainer-exp">10 năm kinh nghiệm</p>
+                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&h=500&fit=crop" alt="Trainer">
+                <div class="trainer-info">
+                    <h3 class="trainer-name">Nguyễn Văn Minh</h3>
+                    <p class="trainer-role">Head Coach • 10 năm</p>
+                </div>
             </div>
             <div class="trainer-card">
-                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=200&h=200&fit=crop" alt="Trainer" class="trainer-image">
-                <h3 class="trainer-name">Trần Thị Mai</h3>
-                <p class="trainer-role">Yoga Instructor</p>
-                <p class="trainer-exp">7 năm kinh nghiệm</p>
+                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&h=500&fit=crop" alt="Trainer">
+                <div class="trainer-info">
+                    <h3 class="trainer-name">Trần Thị Mai</h3>
+                    <p class="trainer-role">Yoga Master • 7 năm</p>
+                </div>
             </div>
             <div class="trainer-card">
-                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=200&h=200&fit=crop" alt="Trainer" class="trainer-image">
-                <h3 class="trainer-name">Lê Hoàng Nam</h3>
-                <p class="trainer-role">Strength Coach</p>
-                <p class="trainer-exp">8 năm kinh nghiệm</p>
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop" alt="Trainer">
+                <div class="trainer-info">
+                    <h3 class="trainer-name">Lê Hoàng Nam</h3>
+                    <p class="trainer-role">Strength Coach • 8 năm</p>
+                </div>
             </div>
             <div class="trainer-card">
-                <img src="https://images.unsplash.com/photo-1609899464726-209befadc587?w=200&h=200&fit=crop" alt="Trainer" class="trainer-image">
-                <h3 class="trainer-name">Phạm Thùy Linh</h3>
-                <p class="trainer-role">Cardio Specialist</p>
-                <p class="trainer-exp">5 năm kinh nghiệm</p>
+                <img src="https://images.unsplash.com/photo-1609899464726-209befadc587?w=400&h=500&fit=crop" alt="Trainer">
+                <div class="trainer-info">
+                    <h3 class="trainer-name">Phạm Thùy Linh</h3>
+                    <p class="trainer-role">Cardio Expert • 5 năm</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="cta-section">
-        <div class="cta-container">
-            <h2 class="cta-title">Sẵn Sàng Thay Đổi?</h2>
-            <p class="cta-subtitle">Đăng ký ngay để nhận buổi tập thử miễn phí và tư vấn từ chuyên gia</p>
-            <form class="cta-form">
-                <input type="tel" placeholder="Số điện thoại của bạn" class="cta-input">
-                <button type="submit" class="cta-btn">Đăng Ký Ngay</button>
-            </form>
+    <section id="cta" class="cta">
+        <div class="cta-bg"></div>
+        <div class="cta-content">
+            <h2>Bắt Đầu Hành Trình<br>Của Bạn Ngay Hôm Nay</h2>
+            <p>Đăng ký ngay để nhận buổi tập thử miễn phí + Tư vấn 1-1 với PT</p>
+            <a href="#" class="btn-main">Đăng Ký Miễn Phí →</a>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo">💪 FitLife</div>
+        <div class="footer-logo">FIT<span>LIFE</span></div>
         <p class="footer-text">© 2024 FitLife. Thiết kế bởi Chí Vĩ - VHITEK</p>
     </footer>
 
     <script>
-        window.addEventListener('scroll',()=>{document.querySelector('header').classList.toggle('scrolled',window.scrollY>50)});
+        window.addEventListener('scroll',()=>{
+            document.querySelector('header').classList.toggle('scrolled',window.scrollY>100);
+        });
     </script>
 </body>
 </html>
