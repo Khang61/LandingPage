@@ -268,7 +268,8 @@ a:hover {
 .header .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 3rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
