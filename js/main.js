@@ -228,12 +228,12 @@
 
       sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
+        const sectionTop = section.offsetTop - 150;
         const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-menu a[href="#${sectionId}"]`);
+        const navLink = document.querySelector(`.nav-item[href="#${sectionId}"]`);
 
         if (navLink && scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          document.querySelectorAll('.nav-menu a').forEach(link => link.classList.remove('active'));
+          document.querySelectorAll('.nav-item').forEach(link => link.classList.remove('active'));
           navLink.classList.add('active');
         }
       });
