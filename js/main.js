@@ -57,13 +57,6 @@
         header.classList.remove('header--sticky');
       }
 
-      // Shrink state (when scrolled past 100px)
-      if (currentScrollY > 100) {
-        header.classList.add('header--shrink');
-      } else {
-        header.classList.remove('header--shrink');
-      }
-
       lastScrollY = currentScrollY;
       ticking = false;
     }
