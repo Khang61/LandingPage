@@ -280,12 +280,12 @@ a:hover {
   color: var(--color-primary);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .logo > img {
-  height: 45px;
+  height: 55px;
   width: auto;
 }
 
@@ -295,11 +295,12 @@ a:hover {
 }
 
 .powered-by {
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: 0.65rem;
+  font-weight: 400;
   color: var(--color-text-light);
   font-family: var(--font-body);
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .nav-menu {
