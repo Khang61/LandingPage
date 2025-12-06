@@ -271,7 +271,7 @@ a:hover {
   justify-content: space-between;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  max-width: 1200px;
+  max-width: 1500px;
 }
 
 .logo {
@@ -308,7 +308,7 @@ a:hover {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 4rem;
 }
 
 .nav-menu a {
