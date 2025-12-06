@@ -221,11 +221,11 @@
 /* ============================================
    Underline Animation for Links
    ============================================ */
-.nav-menu a {
+.nav-menu a:not(.btn) {
   position: relative;
 }
 
-.nav-menu a::after {
+.nav-menu a:not(.btn)::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -236,7 +236,7 @@
   transition: width var(--transition-normal);
 }
 
-.nav-menu a:hover::after {
+.nav-menu a:not(.btn):hover::after {
   width: 100%;
 }
 
