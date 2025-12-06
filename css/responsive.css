@@ -260,64 +260,7 @@
     --container-padding: 1rem;
   }
 
-  /* Header Top Mobile - VinFast Style */
-  .header-top__inner {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 0.5rem 0;
-  }
-
-  .logo > img {
-    height: 50px;
-  }
-
-  .company-info {
-    width: 100%;
-    order: 3;
-    padding-top: 0.5rem;
-    border-top: 1px solid #eee;
-  }
-
-  .company-name {
-    font-size: 1.25rem;
-  }
-
-  .company-address {
-    font-size: 0.75rem;
-  }
-
-  .header-hotline {
-    gap: 0.5rem;
-  }
-
-  .hotline-icon {
-    width: 38px;
-    height: 38px;
-  }
-
-  .hotline-icon svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .hotline-label {
-    font-size: 0.65rem;
-  }
-
-  .hotline-number {
-    font-size: 1.1rem;
-  }
-
-  /* Navigation Bar Mobile */
-  .nav-bar {
-    position: relative;
-  }
-
-  .nav-bar__inner {
-    padding: 0;
-  }
-
+  /* Header Mobile */
   .nav-menu {
     position: fixed;
     top: 0;
@@ -325,30 +268,25 @@
     width: 80%;
     max-width: 300px;
     height: 100vh;
-    background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+    background: var(--color-bg-white);
     flex-direction: column;
-    justify-content: flex-start;
-    padding: 4rem 1rem 2rem;
+    justify-content: center;
+    padding: var(--spacing-md);
     box-shadow: var(--shadow-xl);
     transition: right var(--transition-normal);
-    z-index: 1001;
   }
 
   .nav-menu.active {
     right: 0;
   }
 
-  .nav-item {
-    width: 100%;
-    padding: 1rem;
-    text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+  .nav-menu a {
+    padding: var(--spacing-sm) 0;
+    font-size: 1.125rem;
   }
 
   .menu-toggle {
     display: flex;
-    margin-left: auto;
-    padding: 0.75rem;
   }
 
   .menu-toggle.active span:nth-child(1) {
