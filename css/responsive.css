@@ -739,6 +739,15 @@
 
   .footer-brand .logo {
     justify-content: center;
+    align-items: center;
+  }
+
+  .footer-brand .logo img {
+    height: 120px;
+  }
+
+  .footer-brand .powered-by {
+    font-size: 1.25rem;
   }
 
   .footer-bottom {
