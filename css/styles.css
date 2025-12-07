@@ -292,12 +292,12 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.15rem;
-  margin-left: 1rem;
+  gap: 0.25rem;
+  margin-left: 2rem;
 }
 
 .logo > img {
-  height: 65px;
+  height: 110px;
   width: auto;
   transition: height 0.3s ease;
 }
@@ -308,9 +308,9 @@ a:hover {
 }
 
 .powered-by {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-primary);
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--color-text-light);
   font-family: var(--font-body);
   letter-spacing: 0.5px;
   text-align: center;
@@ -319,8 +319,8 @@ a:hover {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  margin-right: 1rem;
+  gap: 5rem;
+  margin-right: 2rem;
 }
 
 .nav-menu a {
