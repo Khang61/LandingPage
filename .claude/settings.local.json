@@ -28,7 +28,9 @@
       "Bash(git reset:*)",
       "Bash(git checkout:*)",
       "Bash(awk:*)",
-      "Bash(git rev-parse:*)"
+      "Bash(git rev-parse:*)",
+      "Bash(del \"d:\\WORK\\LandingPage\\nav-fix-verify.png\")",
+      "Bash(git revert:*)"
     ],
     "deny": [],
     "ask": []
