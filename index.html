@@ -877,39 +877,39 @@
 
           <form id="contactForm" class="contact-form animate fade-in-right delay-2">
             <div class="form-group">
-              <label for="name">Họ và tên *</label>
-              <input type="text" id="name" name="name" required placeholder="Nhập họ tên của bạn">
+              <label for="from_name">Họ và tên *</label>
+              <input type="text" id="from_name" name="from_name" required placeholder="Nhập họ tên của bạn">
             </div>
             <div class="form-group">
               <label for="phone">Số điện thoại *</label>
               <input type="tel" id="phone" name="phone" required placeholder="Nhập số điện thoại">
             </div>
             <div class="form-group">
-              <label for="service">Loại trang bán hàng cần làm</label>
-              <select id="service" name="service">
+              <label for="service_type">Loại trang bán hàng cần làm</label>
+              <select id="service_type" name="service_type">
                 <option value="">Chọn loại dịch vụ</option>
-                <option value="ecommerce">Trang bán hàng online</option>
-                <option value="lead">Trang thu thập khách tiềm năng</option>
-                <option value="event">Trang đăng ký sự kiện</option>
-                <option value="saas">Trang giới thiệu phần mềm</option>
-                <option value="other">Khác</option>
+                <option value="Trang bán hàng online">Trang bán hàng online</option>
+                <option value="Trang thu thập khách tiềm năng">Trang thu thập khách tiềm năng</option>
+                <option value="Trang đăng ký sự kiện">Trang đăng ký sự kiện</option>
+                <option value="Trang giới thiệu phần mềm">Trang giới thiệu phần mềm</option>
+                <option value="Khác">Khác</option>
               </select>
             </div>
             <div class="form-group">
               <label for="budget">Ngân sách dự kiến</label>
               <select id="budget" name="budget">
                 <option value="">Chọn ngân sách</option>
-                <option value="basic">2-3 triệu (Gói Basic)</option>
-                <option value="standard">4-6 triệu (Gói Standard)</option>
-                <option value="premium">8-12 triệu (Gói Premium)</option>
-                <option value="custom">Tùy chỉnh</option>
+                <option value="2-3 triệu (Gói Basic)">2-3 triệu (Gói Basic)</option>
+                <option value="4-6 triệu (Gói Standard)">4-6 triệu (Gói Standard)</option>
+                <option value="8-12 triệu (Gói Premium)">8-12 triệu (Gói Premium)</option>
+                <option value="Tùy chỉnh">Tùy chỉnh</option>
               </select>
             </div>
             <div class="form-group">
               <label for="message">Mô tả yêu cầu</label>
               <textarea id="message" name="message" rows="4" placeholder="Mô tả ngắn về dự án của bạn..."></textarea>
             </div>
-            <button type="submit" class="btn btn--primary">Gửi Yêu Cầu Báo Giá</button>
+            <button type="submit" class="btn btn--primary" id="submitBtn">Gửi Yêu Cầu Báo Giá</button>
           </form>
         </div>
       </div>
@@ -978,6 +978,9 @@
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <!-- Scripts -->
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
@@ -996,6 +999,45 @@
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 }
         }
+      });
+
+      // EmailJS Configuration
+      emailjs.init('P3SYIlce9kdrhPUzy');
+
+      // Contact Form Submission
+      const contactForm = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Change button state
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Đang gửi...';
+        submitBtn.disabled = true;
+
+        // Get form data
+        const templateParams = {
+          from_name: document.getElementById('from_name').value,
+          phone: document.getElementById('phone').value,
+          service_type: document.getElementById('service_type').value || 'Chưa chọn',
+          budget: document.getElementById('budget').value || 'Chưa chọn',
+          message: document.getElementById('message').value || 'Không có mô tả'
+        };
+
+        // Send email
+        emailjs.send('service_j5gucyh', 'template_hr7czea', templateParams)
+          .then(function(response) {
+            alert('✅ Gửi yêu cầu thành công!\nChúng tôi sẽ liên hệ bạn trong 24h.');
+            contactForm.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }, function(error) {
+            alert('❌ Gửi thất bại. Vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo.');
+            console.error('EmailJS Error:', error);
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          });
       });
     });
   </script>
